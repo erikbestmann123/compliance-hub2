@@ -1,0 +1,1084 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template Updates | ONESOURCE Statutory Reporting</title>
+
+    <!-- Saffron web components + styles (registered in main.js) -->
+    <script type="module" src="/main.js"></script>
+
+    <!-- Page stylesheet -->
+    <link rel="stylesheet" href="/template-update.css" />
+  </head>
+
+  <body>
+    <div class="page-layout">
+
+      <!-- ══════════════════════════════════════════════════════
+           PRODUCT HEADER
+           Matches the OSR app shell screenshot
+           ══════════════════════════════════════════════════════ -->
+      <saf-product-header
+        product-name="ONESOURCE Statutory Reporting"
+        tasks-aria-label="Product Navigation"
+        global-aria-label="User Actions"
+      >
+        <!-- Logo slot -->
+        <saf-anchor href="/index.html" slot="logo">
+          <saf-logo
+            appearance="1-color-reversed"
+            product-name="ONESOURCE"
+          ></saf-logo>
+        </saf-anchor>
+
+        <!-- Right‑side icon actions -->
+        <div slot="global">
+          <saf-product-header-item>
+            <saf-button appearance="tertiary" icon-only>
+              <saf-icon icon-name="magnifying-glass"></saf-icon>
+              <saf-sr-only>Search</saf-sr-only>
+            </saf-button>
+          </saf-product-header-item>
+          <saf-product-header-item>
+            <saf-button appearance="tertiary" icon-only>
+              <saf-icon icon-name="star"></saf-icon>
+              <saf-sr-only>Favorites</saf-sr-only>
+            </saf-button>
+          </saf-product-header-item>
+          <saf-product-header-item>
+            <saf-button appearance="tertiary" icon-only>
+              <saf-icon icon-name="circle-question"></saf-icon>
+              <saf-sr-only>Help</saf-sr-only>
+            </saf-button>
+          </saf-product-header-item>
+          <saf-product-header-item>
+            <saf-button
+              appearance="tertiary"
+              icon-only
+              id="notif-btn"
+              aria-label="Notifications — 2 unread"
+            >
+              <saf-icon icon-name="bell"></saf-icon>
+              <saf-badge
+                appearance="error"
+                style="position:absolute;top:4px;right:4px;pointer-events:none;"
+                aria-hidden="true"
+              >2</saf-badge>
+            </saf-button>
+          </saf-product-header-item>
+          <saf-product-header-item>
+            <saf-button appearance="tertiary" icon-only>
+              <saf-icon icon-name="grid"></saf-icon>
+              <saf-sr-only>Applications</saf-sr-only>
+            </saf-button>
+          </saf-product-header-item>
+          <saf-product-header-item>
+            <saf-button appearance="tertiary" icon-only>
+              <saf-icon icon-name="circle-user"></saf-icon>
+              <saf-sr-only>User profile</saf-sr-only>
+            </saf-button>
+          </saf-product-header-item>
+        </div>
+      </saf-product-header>
+
+      <!-- ══════════════════════════════════════════════════════
+           SUB NAVIGATION — mimics the OSR tab bar in screenshot
+           ══════════════════════════════════════════════════════ -->
+      <nav class="sub-nav" aria-label="Main navigation">
+        <ul class="sub-nav__list" role="list">
+          <li class="sub-nav__item">
+            <a href="#" class="sub-nav__link">Reporting Entities</a>
+          </li>
+          <li class="sub-nav__item">
+            <a href="#" class="sub-nav__link sub-nav__link--active" aria-current="page">Templates</a>
+          </li>
+          <li class="sub-nav__item">
+            <a href="#" class="sub-nav__link">Tools</a>
+          </li>
+          <li class="sub-nav__item">
+            <a href="#" class="sub-nav__link">Help</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- ══════════════════════════════════════════════════════
+           MAIN PAGE CONTENT
+           ══════════════════════════════════════════════════════ -->
+      <main class="main-content" id="main-content" role="main">
+
+        <!-- ── Breadcrumb ───────────────────────────────────── -->
+        <div class="breadcrumb-wrapper" aria-label="Breadcrumb">
+          <saf-breadcrumb>
+            <saf-breadcrumb-item href="/index.html">Home</saf-breadcrumb-item>
+            <saf-breadcrumb-item href="#">Templates</saf-breadcrumb-item>
+            <saf-breadcrumb-item>Template Updates</saf-breadcrumb-item>
+          </saf-breadcrumb>
+        </div>
+
+        <!-- ── Page header ─────────────────────────────────── -->
+        <div class="page-header">
+          <div class="page-header__left">
+            <h1 class="page-header__title">Template Updates</h1>
+            <p class="page-header__subtitle">
+              Manage and apply Thomson Reuters and organisational template updates across your reporting entities.
+            </p>
+          </div>
+          <div class="page-header__actions">
+            <saf-button appearance="secondary" id="history-btn">
+              <saf-icon icon-name="clock-rotate-left" slot="start"></saf-icon>
+              Update History
+            </saf-button>
+            <saf-button appearance="primary" id="run-agent-btn">
+              <saf-icon icon-name="bolt" slot="start"></saf-icon>
+              Run Template Update Agent
+            </saf-button>
+          </div>
+        </div>
+
+        <!-- ── Update available alert ──────────────────────── -->
+        <div class="alert-wrapper">
+          <saf-alert
+            appearance="info"
+            id="update-alert"
+            dismissible
+          >
+            <saf-icon icon-name="circle-info" slot="icon"></saf-icon>
+            <strong>FY2026 Thomson Reuters annual template updates are now available.</strong>
+            12 templates have been updated by the TR content team. Run the Template Update Agent to apply
+            changes to your organisation and entity reports — conflicted sections will be flagged for your review.
+          </saf-alert>
+        </div>
+
+        <!-- ── Summary stat cards ──────────────────────────── -->
+        <section aria-labelledby="stats-heading">
+          <h2 id="stats-heading" class="visually-hidden">Update status summary</h2>
+          <div class="stat-cards">
+
+            <div class="stat-card stat-card--warning" role="region" aria-labelledby="stat-pending">
+              <p class="stat-card__label" id="stat-pending">Updates Available</p>
+              <p class="stat-card__value">5</p>
+              <p class="stat-card__detail">
+                <saf-icon icon-name="arrow-up" aria-hidden="true" size="sm"></saf-icon>
+                Across 3 template types
+              </p>
+            </div>
+
+            <div class="stat-card stat-card--error" role="region" aria-labelledby="stat-conflicts">
+              <p class="stat-card__label" id="stat-conflicts">Conflicts Detected</p>
+              <p class="stat-card__value">3</p>
+              <p class="stat-card__detail">
+                <saf-icon icon-name="triangle-exclamation" aria-hidden="true" size="sm"></saf-icon>
+                6 sections require review
+              </p>
+            </div>
+
+            <div class="stat-card stat-card--info" role="region" aria-labelledby="stat-progress">
+              <p class="stat-card__label" id="stat-progress">In Progress</p>
+              <p class="stat-card__value">2</p>
+              <p class="stat-card__detail">
+                <saf-icon icon-name="arrows-rotate" aria-hidden="true" size="sm"></saf-icon>
+                Agent running — 47 entities
+              </p>
+            </div>
+
+            <div class="stat-card stat-card--success" role="region" aria-labelledby="stat-complete">
+              <p class="stat-card__label" id="stat-complete">Up to Date</p>
+              <p class="stat-card__value">9</p>
+              <p class="stat-card__detail">
+                <saf-icon icon-name="circle-check" aria-hidden="true" size="sm"></saf-icon>
+                No action required
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ── AI Agent capability card ────────────────────── -->
+        <section class="agent-card" aria-labelledby="agent-heading">
+          <div>
+            <div class="agent-card__icon-row">
+              <div class="agent-card__icon-wrap" aria-hidden="true">
+                <saf-icon icon-name="microchip-ai" size="md"></saf-icon>
+              </div>
+              <span class="agent-card__label">AI‑Powered</span>
+            </div>
+            <h2 class="agent-card__title" id="agent-heading">Template Update Agent</h2>
+            <p class="agent-card__description">
+              The Template Update Agent automates the annual template update process end‑to‑end.
+              It scans your templates against the latest TR content, identifies conflicts in
+              customised sections, categorises changes by impact, and generates recommendations —
+              then notifies you to review anything that requires a human decision.
+            </p>
+            <div class="agent-card__steps" role="list" aria-label="Agent steps">
+              <span class="agent-card__step" role="listitem">
+                <span class="agent-card__step-num" aria-hidden="true">1</span>
+                Scan for conflicts
+              </span>
+              <span class="agent-card__step" role="listitem">
+                <span class="agent-card__step-num" aria-hidden="true">2</span>
+                Categorise changes
+              </span>
+              <span class="agent-card__step" role="listitem">
+                <span class="agent-card__step-num" aria-hidden="true">3</span>
+                Generate recommendations
+              </span>
+              <span class="agent-card__step" role="listitem">
+                <span class="agent-card__step-num" aria-hidden="true">4</span>
+                Notify for review
+              </span>
+              <span class="agent-card__step" role="listitem">
+                <span class="agent-card__step-num" aria-hidden="true">5</span>
+                Apply updates
+              </span>
+            </div>
+          </div>
+          <div class="agent-card__actions">
+            <saf-button appearance="primary" id="agent-card-run-btn">
+              <saf-icon icon-name="bolt" slot="start"></saf-icon>
+              Configure &amp; Run
+            </saf-button>
+            <saf-button appearance="ghost" id="agent-learn-btn">
+              <saf-icon icon-name="circle-info" slot="start"></saf-icon>
+              Learn more
+            </saf-button>
+          </div>
+        </section>
+
+        <!-- ── Template table ──────────────────────────────── -->
+        <section class="table-section" aria-labelledby="table-heading">
+
+          <div class="table-section__header">
+            <h2 class="table-section__title" id="table-heading">All Templates</h2>
+            <div class="table-section__controls">
+              <saf-select
+                aria-label="Filter by status"
+                density="compact"
+                current-value="all"
+                id="status-filter"
+              >
+                <option value="all" selected>All Statuses</option>
+                <option value="available">Updates Available</option>
+                <option value="conflict">Conflicts Detected</option>
+                <option value="in-progress">In Progress</option>
+                <option value="up-to-date">Up to Date</option>
+              </saf-select>
+              <saf-select
+                aria-label="Filter by template type"
+                density="compact"
+                current-value="all"
+                id="type-filter"
+              >
+                <option value="all" selected>All Types</option>
+                <option value="tr">TR Template</option>
+                <option value="org">Org Template</option>
+              </saf-select>
+              <saf-text-field
+                placeholder="Search templates…"
+                density="compact"
+                aria-label="Search templates"
+                id="template-search"
+                style="min-width:220px;"
+              >
+                <saf-icon icon-name="magnifying-glass" slot="start"></saf-icon>
+              </saf-text-field>
+            </div>
+          </div>
+
+          <!-- Scrollable table wrapper -->
+          <div style="overflow-x:auto;">
+            <table class="data-table" aria-label="Templates and update status" id="template-table">
+              <thead>
+                <tr>
+                  <th scope="col">Template</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Fiscal Year</th>
+                  <th scope="col">Entities Affected</th>
+                  <th scope="col">Last Updated</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">
+                    <span class="visually-hidden">Actions</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="template-tbody">
+
+                <!-- Row 1 -->
+                <tr data-status="available" data-type="tr">
+                  <td>
+                    <div class="template-name">
+                      UK Statutory Accounts FY2026
+                      <span class="template-name__sub">United Kingdom · GAAP</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="type-tag type-tag--tr">
+                      <saf-icon icon-name="building" size="xs" aria-hidden="true"></saf-icon>
+                      TR Template
+                    </span>
+                  </td>
+                  <td>FY2026</td>
+                  <td>
+                    <div class="entity-count">
+                      23
+                      <div class="entity-count__label">entities</div>
+                    </div>
+                  </td>
+                  <td>12 Mar 2026</td>
+                  <td>
+                    <span class="status-dot status-dot--pending">Updates Available</span>
+                  </td>
+                  <td>
+                    <div class="action-cell">
+                      <saf-button appearance="primary" density="compact" class="run-update-btn" data-template="UK Statutory Accounts FY2026">
+                        Run Update
+                      </saf-button>
+                      <saf-tooltip content="View template details">
+                        <saf-button appearance="ghost" density="compact" icon-only>
+                          <saf-icon icon-name="eye"></saf-icon>
+                          <saf-sr-only>View details</saf-sr-only>
+                        </saf-button>
+                      </saf-tooltip>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 2 -->
+                <tr data-status="conflict" data-type="tr">
+                  <td>
+                    <div class="template-name">
+                      Ireland Annual Report FY2026
+                      <span class="template-name__sub">Ireland · FRS 102</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="type-tag type-tag--tr">
+                      <saf-icon icon-name="building" size="xs" aria-hidden="true"></saf-icon>
+                      TR Template
+                    </span>
+                  </td>
+                  <td>FY2026</td>
+                  <td>
+                    <div class="entity-count">
+                      8
+                      <div class="entity-count__label">entities</div>
+                    </div>
+                  </td>
+                  <td>12 Mar 2026</td>
+                  <td>
+                    <span class="status-dot status-dot--conflict">Conflicts Detected</span>
+                    <br>
+                    <saf-badge appearance="error-light" density="compact" style="margin-top:2px;">3 sections</saf-badge>
+                  </td>
+                  <td>
+                    <div class="action-cell">
+                      <saf-button appearance="secondary" density="compact" class="review-conflict-btn" data-template="Ireland Annual Report FY2026">
+                        Review Conflicts
+                      </saf-button>
+                      <saf-tooltip content="View template details">
+                        <saf-button appearance="ghost" density="compact" icon-only>
+                          <saf-icon icon-name="eye"></saf-icon>
+                          <saf-sr-only>View details</saf-sr-only>
+                        </saf-button>
+                      </saf-tooltip>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 3 -->
+                <tr data-status="available" data-type="tr">
+                  <td>
+                    <div class="template-name">
+                      Germany GmbH Financial Statements
+                      <span class="template-name__sub">Germany · HGB</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="type-tag type-tag--tr">
+                      <saf-icon icon-name="building" size="xs" aria-hidden="true"></saf-icon>
+                      TR Template
+                    </span>
+                  </td>
+                  <td>FY2026</td>
+                  <td>
+                    <div class="entity-count">
+                      12
+                      <div class="entity-count__label">entities</div>
+                    </div>
+                  </td>
+                  <td>11 Mar 2026</td>
+                  <td>
+                    <span class="status-dot status-dot--pending">Updates Available</span>
+                  </td>
+                  <td>
+                    <div class="action-cell">
+                      <saf-button appearance="primary" density="compact" class="run-update-btn" data-template="Germany GmbH Financial Statements">
+                        Run Update
+                      </saf-button>
+                      <saf-tooltip content="View template details">
+                        <saf-button appearance="ghost" density="compact" icon-only>
+                          <saf-icon icon-name="eye"></saf-icon>
+                          <saf-sr-only>View details</saf-sr-only>
+                        </saf-button>
+                      </saf-tooltip>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 4 -->
+                <tr data-status="in-progress" data-type="org">
+                  <td>
+                    <div class="template-name">
+                      Netherlands Holdings Template
+                      <span class="template-name__sub">Org · Netherlands · Dutch GAAP</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="type-tag type-tag--org">
+                      <saf-icon icon-name="sitemap" size="xs" aria-hidden="true"></saf-icon>
+                      Org Template
+                    </span>
+                  </td>
+                  <td>FY2026</td>
+                  <td>
+                    <div class="entity-count">
+                      6
+                      <div class="entity-count__label">entities</div>
+                    </div>
+                  </td>
+                  <td>15 Mar 2026</td>
+                  <td>
+                    <span class="status-dot status-dot--in-progress">In Progress</span>
+                    <br>
+                    <saf-progress value="62" max="100" style="margin-top:4px;width:120px;" aria-label="62% complete"></saf-progress>
+                  </td>
+                  <td>
+                    <div class="action-cell">
+                      <saf-button appearance="ghost" density="compact">
+                        <saf-icon icon-name="eye" slot="start"></saf-icon>
+                        View Progress
+                      </saf-button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 5 -->
+                <tr data-status="available" data-type="tr">
+                  <td>
+                    <div class="template-name">
+                      France SAS Standard Report
+                      <span class="template-name__sub">France · French GAAP</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="type-tag type-tag--tr">
+                      <saf-icon icon-name="building" size="xs" aria-hidden="true"></saf-icon>
+                      TR Template
+                    </span>
+                  </td>
+                  <td>FY2026</td>
+                  <td>
+                    <div class="entity-count">
+                      15
+                      <div class="entity-count__label">entities</div>
+                    </div>
+                  </td>
+                  <td>10 Mar 2026</td>
+                  <td>
+                    <span class="status-dot status-dot--pending">Updates Available</span>
+                  </td>
+                  <td>
+                    <div class="action-cell">
+                      <saf-button appearance="primary" density="compact" class="run-update-btn" data-template="France SAS Standard Report">
+                        Run Update
+                      </saf-button>
+                      <saf-tooltip content="View template details">
+                        <saf-button appearance="ghost" density="compact" icon-only>
+                          <saf-icon icon-name="eye"></saf-icon>
+                          <saf-sr-only>View details</saf-sr-only>
+                        </saf-button>
+                      </saf-tooltip>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 6 -->
+                <tr data-status="conflict" data-type="tr">
+                  <td>
+                    <div class="template-name">
+                      Australia Pty Ltd Accounts
+                      <span class="template-name__sub">Australia · AIFRS</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="type-tag type-tag--tr">
+                      <saf-icon icon-name="building" size="xs" aria-hidden="true"></saf-icon>
+                      TR Template
+                    </span>
+                  </td>
+                  <td>FY2026</td>
+                  <td>
+                    <div class="entity-count">
+                      9
+                      <div class="entity-count__label">entities</div>
+                    </div>
+                  </td>
+                  <td>12 Mar 2026</td>
+                  <td>
+                    <span class="status-dot status-dot--conflict">Conflicts Detected</span>
+                    <br>
+                    <saf-badge appearance="error-light" density="compact" style="margin-top:2px;">2 sections</saf-badge>
+                  </td>
+                  <td>
+                    <div class="action-cell">
+                      <saf-button appearance="secondary" density="compact" class="review-conflict-btn" data-template="Australia Pty Ltd Accounts">
+                        Review Conflicts
+                      </saf-button>
+                      <saf-tooltip content="View template details">
+                        <saf-button appearance="ghost" density="compact" icon-only>
+                          <saf-icon icon-name="eye"></saf-icon>
+                          <saf-sr-only>View details</saf-sr-only>
+                        </saf-button>
+                      </saf-tooltip>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 7 -->
+                <tr data-status="in-progress" data-type="org">
+                  <td>
+                    <div class="template-name">
+                      North America Holdings
+                      <span class="template-name__sub">Org · US/Canada · US GAAP</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="type-tag type-tag--org">
+                      <saf-icon icon-name="sitemap" size="xs" aria-hidden="true"></saf-icon>
+                      Org Template
+                    </span>
+                  </td>
+                  <td>FY2026</td>
+                  <td>
+                    <div class="entity-count">
+                      28
+                      <div class="entity-count__label">entities</div>
+                    </div>
+                  </td>
+                  <td>16 Mar 2026</td>
+                  <td>
+                    <span class="status-dot status-dot--in-progress">In Progress</span>
+                    <br>
+                    <saf-progress value="19" max="100" style="margin-top:4px;width:120px;" aria-label="19% complete"></saf-progress>
+                  </td>
+                  <td>
+                    <div class="action-cell">
+                      <saf-button appearance="ghost" density="compact">
+                        <saf-icon icon-name="eye" slot="start"></saf-icon>
+                        View Progress
+                      </saf-button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 8 -->
+                <tr data-status="conflict" data-type="tr">
+                  <td>
+                    <div class="template-name">
+                      Singapore Pte Ltd
+                      <span class="template-name__sub">Singapore · SFRS(I)</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="type-tag type-tag--tr">
+                      <saf-icon icon-name="building" size="xs" aria-hidden="true"></saf-icon>
+                      TR Template
+                    </span>
+                  </td>
+                  <td>FY2026</td>
+                  <td>
+                    <div class="entity-count">
+                      4
+                      <div class="entity-count__label">entities</div>
+                    </div>
+                  </td>
+                  <td>11 Mar 2026</td>
+                  <td>
+                    <span class="status-dot status-dot--conflict">Conflicts Detected</span>
+                    <br>
+                    <saf-badge appearance="error-light" density="compact" style="margin-top:2px;">1 section</saf-badge>
+                  </td>
+                  <td>
+                    <div class="action-cell">
+                      <saf-button appearance="secondary" density="compact" class="review-conflict-btn" data-template="Singapore Pte Ltd">
+                        Review Conflicts
+                      </saf-button>
+                      <saf-tooltip content="View template details">
+                        <saf-button appearance="ghost" density="compact" icon-only>
+                          <saf-icon icon-name="eye"></saf-icon>
+                          <saf-sr-only>View details</saf-sr-only>
+                        </saf-button>
+                      </saf-tooltip>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 9 - Up to date -->
+                <tr data-status="up-to-date" data-type="tr">
+                  <td>
+                    <div class="template-name">
+                      Hong Kong SAR Accounts
+                      <span class="template-name__sub">Hong Kong · HKFRS</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="type-tag type-tag--tr">
+                      <saf-icon icon-name="building" size="xs" aria-hidden="true"></saf-icon>
+                      TR Template
+                    </span>
+                  </td>
+                  <td>FY2025</td>
+                  <td>
+                    <div class="entity-count">
+                      11
+                      <div class="entity-count__label">entities</div>
+                    </div>
+                  </td>
+                  <td>20 Sep 2025</td>
+                  <td>
+                    <span class="status-dot status-dot--up-to-date">Up to Date</span>
+                  </td>
+                  <td>
+                    <div class="action-cell">
+                      <saf-button appearance="ghost" density="compact">
+                        <saf-icon icon-name="eye" slot="start"></saf-icon>
+                        View
+                      </saf-button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 10 - Available -->
+                <tr data-status="available" data-type="tr">
+                  <td>
+                    <div class="template-name">
+                      Japan KK Financial Statements
+                      <span class="template-name__sub">Japan · J-GAAP</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="type-tag type-tag--tr">
+                      <saf-icon icon-name="building" size="xs" aria-hidden="true"></saf-icon>
+                      TR Template
+                    </span>
+                  </td>
+                  <td>FY2026</td>
+                  <td>
+                    <div class="entity-count">
+                      7
+                      <div class="entity-count__label">entities</div>
+                    </div>
+                  </td>
+                  <td>13 Mar 2026</td>
+                  <td>
+                    <span class="status-dot status-dot--pending">Updates Available</span>
+                  </td>
+                  <td>
+                    <div class="action-cell">
+                      <saf-button appearance="primary" density="compact" class="run-update-btn" data-template="Japan KK Financial Statements">
+                        Run Update
+                      </saf-button>
+                      <saf-tooltip content="View template details">
+                        <saf-button appearance="ghost" density="compact" icon-only>
+                          <saf-icon icon-name="eye"></saf-icon>
+                          <saf-sr-only>View details</saf-sr-only>
+                        </saf-button>
+                      </saf-tooltip>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Table footer / pagination row -->
+          <div class="table-footer" aria-live="polite" id="table-footer">
+            <span>Showing <strong id="visible-count">10</strong> of <strong>19</strong> templates</span>
+            <div style="display:flex;gap:0.5rem;align-items:center;">
+              <saf-button appearance="ghost" density="compact" disabled aria-label="Previous page">
+                <saf-icon icon-name="chevron-left"></saf-icon>
+              </saf-button>
+              <span style="font-size:0.875rem;">Page 1 of 2</span>
+              <saf-button appearance="ghost" density="compact" aria-label="Next page">
+                <saf-icon icon-name="chevron-right"></saf-icon>
+              </saf-button>
+            </div>
+          </div>
+
+        </section>
+
+      </main>
+
+      <!-- ══════════════════════════════════════════════════════
+           FOOTER
+           ══════════════════════════════════════════════════════ -->
+      <saf-footer
+        product-name="ONESOURCE Statutory Reporting"
+        a11y-aria-label-anchor-group="Footer links"
+      >
+        <saf-list
+          slot="footer-links"
+          order="unordered"
+          size="medium"
+          list-style="none"
+          inline="true"
+        >
+          <saf-list-item>
+            <saf-anchor href="https://www.thomsonreuters.com/en/terms-of-use.html" target="_blank">Terms</saf-anchor>
+          </saf-list-item>
+          <saf-list-item>
+            <saf-anchor href="https://www.thomsonreuters.com/en/privacy-statement.html" target="_blank">Privacy</saf-anchor>
+          </saf-list-item>
+          <saf-list-item>
+            <saf-anchor href="#">Support</saf-anchor>
+          </saf-list-item>
+        </saf-list>
+      </saf-footer>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         RUN TEMPLATE UPDATE AGENT — Confirmation Dialog
+         ══════════════════════════════════════════════════════ -->
+    <saf-dialog
+      id="agent-dialog"
+      aria-labelledby="dialog-title"
+      aria-describedby="dialog-desc"
+    >
+      <div slot="header">
+        <div style="display:flex;align-items:center;gap:0.625rem;">
+          <saf-icon icon-name="bolt" size="md" style="color:var(--saf-color-brand-primary,#016538);"></saf-icon>
+          <span id="dialog-title">Run Template Update Agent</span>
+        </div>
+      </div>
+
+      <div slot="content">
+        <div class="dialog-content">
+          <p id="dialog-desc">
+            Select how you would like to run the Template Update Agent.
+            The agent will scan for conflicts between your templates and the latest TR content,
+            then apply updates or notify you to review where customisations exist.
+          </p>
+
+          <div class="dialog-options" role="list">
+
+            <label class="dialog-option" role="listitem" tabindex="0">
+              <input type="radio" name="agent-mode" value="all-templates" style="margin-top:2px;" checked>
+              <div class="dialog-option__content">
+                <p class="dialog-option__title">All templates with available updates</p>
+                <p class="dialog-option__desc">
+                  Runs the update across all 5 templates with pending TR content changes.
+                  Conflicts will be flagged — you'll receive a notification to review.
+                </p>
+              </div>
+            </label>
+
+            <label class="dialog-option" role="listitem" tabindex="0">
+              <input type="radio" name="agent-mode" value="conflicts-only" style="margin-top:2px;">
+              <div class="dialog-option__content">
+                <p class="dialog-option__title">Resolve conflicts only</p>
+                <p class="dialog-option__desc">
+                  Focuses on the 3 templates with detected conflicts. The agent will analyse each
+                  customised section and generate recommendations for you to approve.
+                </p>
+              </div>
+            </label>
+
+            <label class="dialog-option" role="listitem" tabindex="0">
+              <input type="radio" name="agent-mode" value="single" style="margin-top:2px;">
+              <div class="dialog-option__content">
+                <p class="dialog-option__title">Single template (selected)</p>
+                <p class="dialog-option__desc">
+                  Run the update for a single template. You can choose the template on the next step.
+                </p>
+              </div>
+            </label>
+
+          </div>
+
+          <saf-alert appearance="warning">
+            <saf-icon icon-name="triangle-exclamation" slot="icon"></saf-icon>
+            Any customisations in conflicted reporting elements will be preserved until you explicitly
+            approve the update during the review step.
+          </saf-alert>
+        </div>
+      </div>
+
+      <div slot="actions" style="display:flex;gap:0.75rem;justify-content:flex-end;">
+        <saf-button appearance="secondary" id="dialog-cancel-btn">Cancel</saf-button>
+        <saf-button appearance="primary" id="dialog-confirm-btn">
+          <saf-icon icon-name="bolt" slot="start"></saf-icon>
+          Start Agent
+        </saf-button>
+      </div>
+    </saf-dialog>
+
+    <!-- ══════════════════════════════════════════════════════
+         SINGLE TEMPLATE RUN — Confirmation Dialog
+         ══════════════════════════════════════════════════════ -->
+    <saf-dialog
+      id="single-update-dialog"
+      aria-labelledby="single-dialog-title"
+    >
+      <div slot="header" id="single-dialog-title">Run Template Update</div>
+      <div slot="content">
+        <div class="dialog-content">
+          <p>
+            You are about to run the template update for:
+            <strong id="selected-template-name"></strong>
+          </p>
+          <p>
+            The agent will apply the latest TR FY2026 content changes to this template.
+            Any sections with customisations will be flagged and you'll be notified to review them.
+          </p>
+          <saf-alert appearance="info">
+            <saf-icon icon-name="circle-info" slot="icon"></saf-icon>
+            This template affects <strong id="dialog-entity-count">—</strong> reporting entities.
+            All affected entity reports will be queued for update once this template is updated.
+          </saf-alert>
+        </div>
+      </div>
+      <div slot="actions" style="display:flex;gap:0.75rem;justify-content:flex-end;">
+        <saf-button appearance="secondary" id="single-cancel-btn">Cancel</saf-button>
+        <saf-button appearance="primary" id="single-confirm-btn">
+          <saf-icon icon-name="bolt" slot="start"></saf-icon>
+          Run Update
+        </saf-button>
+      </div>
+    </saf-dialog>
+
+    <!-- ══════════════════════════════════════════════════════
+         REVIEW CONFLICTS — Dialog
+         ══════════════════════════════════════════════════════ -->
+    <saf-dialog
+      id="conflict-dialog"
+      aria-labelledby="conflict-dialog-title"
+    >
+      <div slot="header">
+        <div style="display:flex;align-items:center;gap:0.625rem;">
+          <saf-icon icon-name="triangle-exclamation" size="md" style="color:#ef4444;"></saf-icon>
+          <span id="conflict-dialog-title">Review Conflicts</span>
+        </div>
+      </div>
+      <div slot="content">
+        <div class="dialog-content">
+          <p>
+            The Template Update Agent has detected conflicts in
+            <strong id="conflict-template-name"></strong>.
+            Review the conflicted sections below and choose whether to adopt the TR update or retain your customisation.
+          </p>
+
+          <!-- Conflict items list -->
+          <div style="display:flex;flex-direction:column;gap:0.75rem;margin:1rem 0;">
+
+            <div style="border:1px solid #fecaca;border-left:4px solid #ef4444;border-radius:6px;padding:1rem;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.5rem;">
+                <div>
+                  <strong style="font-size:0.9375rem;">Section 4.2 — Directors' Report</strong>
+                  <p style="margin:0.25rem 0 0;font-size:0.8125rem;color:#555;">
+                    TR has updated the Directors' Responsibilities statement to reflect new FY2026 regulatory requirements.
+                    Your template has a customised version of this section.
+                  </p>
+                </div>
+                <saf-badge appearance="error-light" style="flex-shrink:0;">Conflict</saf-badge>
+              </div>
+              <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                <saf-button appearance="primary" density="compact">Adopt TR Update</saf-button>
+                <saf-button appearance="ghost" density="compact">Retain Customisation</saf-button>
+                <saf-button appearance="ghost" density="compact">View Diff</saf-button>
+              </div>
+            </div>
+
+            <div style="border:1px solid #fecaca;border-left:4px solid #ef4444;border-radius:6px;padding:1rem;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.5rem;">
+                <div>
+                  <strong style="font-size:0.9375rem;">Section 6.1 — Accounting Policies</strong>
+                  <p style="margin:0.25rem 0 0;font-size:0.8125rem;color:#555;">
+                    Updated lease accounting policy disclosures per IFRS 16 amendments.
+                    Your template contains additional notes that may need reconciliation.
+                  </p>
+                </div>
+                <saf-badge appearance="error-light" style="flex-shrink:0;">Conflict</saf-badge>
+              </div>
+              <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                <saf-button appearance="primary" density="compact">Adopt TR Update</saf-button>
+                <saf-button appearance="ghost" density="compact">Retain Customisation</saf-button>
+                <saf-button appearance="ghost" density="compact">View Diff</saf-button>
+              </div>
+            </div>
+
+            <div style="border:1px solid #fecaca;border-left:4px solid #ef4444;border-radius:6px;padding:1rem;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.5rem;">
+                <div>
+                  <strong style="font-size:0.9375rem;">Note 12 — Related Party Disclosures</strong>
+                  <p style="margin:0.25rem 0 0;font-size:0.8125rem;color:#555;">
+                    New mandatory disclosure requirements added for related party transactions.
+                    Review whether your customisation captures the new requirements.
+                  </p>
+                </div>
+                <saf-badge appearance="warning-light" style="flex-shrink:0;">Review</saf-badge>
+              </div>
+              <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                <saf-button appearance="primary" density="compact">Adopt TR Update</saf-button>
+                <saf-button appearance="ghost" density="compact">Retain Customisation</saf-button>
+                <saf-button appearance="ghost" density="compact">View Diff</saf-button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div slot="actions" style="display:flex;gap:0.75rem;justify-content:flex-end;">
+        <saf-button appearance="secondary" id="conflict-cancel-btn">Cancel</saf-button>
+        <saf-button appearance="primary" id="conflict-apply-btn">Apply Selected Decisions</saf-button>
+      </div>
+    </saf-dialog>
+
+    <!-- ══════════════════════════════════════════════════════
+         PAGE JAVASCRIPT
+         ══════════════════════════════════════════════════════ -->
+    <script type="module">
+      // ── Dialog helpers ────────────────────────────────────
+      const agentDialog        = document.getElementById('agent-dialog');
+      const singleUpdateDialog = document.getElementById('single-update-dialog');
+      const conflictDialog     = document.getElementById('conflict-dialog');
+
+      function openDialog(dialog)  { dialog.setAttribute('open', ''); }
+      function closeDialog(dialog) { dialog.removeAttribute('open'); }
+
+      // ── Run Template Update Agent button (header + card) ─
+      document.getElementById('run-agent-btn').addEventListener('click', () => openDialog(agentDialog));
+      document.getElementById('agent-card-run-btn').addEventListener('click', () => openDialog(agentDialog));
+
+      document.getElementById('dialog-cancel-btn').addEventListener('click',  () => closeDialog(agentDialog));
+      document.getElementById('dialog-confirm-btn').addEventListener('click', () => {
+        closeDialog(agentDialog);
+        // Show a temporarily "in progress" state on the first available row
+        showToast('Template Update Agent started. You will be notified when review is required.');
+      });
+
+      // ── Per-row "Run Update" buttons ─────────────────────
+      document.querySelectorAll('.run-update-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const templateName = btn.dataset.template;
+          const row = btn.closest('tr');
+          const entityCount = row.querySelector('.entity-count').textContent.trim().split('\n')[0].trim();
+
+          document.getElementById('selected-template-name').textContent = templateName;
+          document.getElementById('dialog-entity-count').textContent    = entityCount;
+          openDialog(singleUpdateDialog);
+        });
+      });
+
+      document.getElementById('single-cancel-btn').addEventListener('click',  () => closeDialog(singleUpdateDialog));
+      document.getElementById('single-confirm-btn').addEventListener('click', () => {
+        closeDialog(singleUpdateDialog);
+        showToast('Template update queued. The agent will notify you when conflicts require review.');
+      });
+
+      // ── Per-row "Review Conflicts" buttons ───────────────
+      document.querySelectorAll('.review-conflict-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const templateName = btn.dataset.template;
+          document.getElementById('conflict-template-name').textContent = templateName;
+          openDialog(conflictDialog);
+        });
+      });
+
+      document.getElementById('conflict-cancel-btn').addEventListener('click',  () => closeDialog(conflictDialog));
+      document.getElementById('conflict-apply-btn').addEventListener('click',   () => {
+        closeDialog(conflictDialog);
+        showToast('Conflict decisions saved. Non-conflicted sections will be updated automatically.');
+      });
+
+      // ── Table filtering ───────────────────────────────────
+      const statusFilter = document.getElementById('status-filter');
+      const typeFilter   = document.getElementById('type-filter');
+      const searchField  = document.getElementById('template-search');
+      const rows         = document.querySelectorAll('#template-tbody tr');
+      const visibleCount = document.getElementById('visible-count');
+
+      function applyFilters() {
+        const statusVal = statusFilter.value || 'all';
+        const typeVal   = typeFilter.value   || 'all';
+        const searchVal = (searchField.value || '').toLowerCase();
+
+        let count = 0;
+        rows.forEach(row => {
+          const matchStatus = statusVal === 'all' || row.dataset.status === statusVal;
+          const matchType   = typeVal   === 'all' || row.dataset.type   === typeVal;
+          const matchSearch = !searchVal || row.textContent.toLowerCase().includes(searchVal);
+
+          const visible = matchStatus && matchType && matchSearch;
+          row.hidden = !visible;
+          if (visible) count++;
+        });
+
+        visibleCount.textContent = count;
+      }
+
+      statusFilter.addEventListener('change', applyFilters);
+      typeFilter.addEventListener('change',   applyFilters);
+      searchField.addEventListener('input',   applyFilters);
+
+      // ── Dismiss the update alert ──────────────────────────
+      const updateAlert = document.getElementById('update-alert');
+      if (updateAlert) {
+        updateAlert.addEventListener('dismiss', () => {});
+      }
+
+      // ── Simple toast notification ─────────────────────────
+      function showToast(message) {
+        const container = document.createElement('div');
+        container.setAttribute('role', 'status');
+        container.setAttribute('aria-live', 'polite');
+        Object.assign(container.style, {
+          position:     'fixed',
+          bottom:       '2rem',
+          right:        '2rem',
+          background:   '#1a1a1a',
+          color:        '#fff',
+          padding:      '0.875rem 1.25rem',
+          borderRadius: '6px',
+          fontSize:     '0.9rem',
+          maxWidth:     '380px',
+          lineHeight:   '1.45',
+          zIndex:       '9999',
+          boxShadow:    '0 4px 16px rgba(0,0,0,0.25)',
+          display:      'flex',
+          alignItems:   'flex-start',
+          gap:          '0.625rem',
+        });
+
+        const icon = document.createElement('span');
+        icon.textContent = '✓';
+        icon.style.cssText = 'flex-shrink:0;font-weight:700;color:#4ade80;';
+
+        const text = document.createElement('span');
+        text.textContent = message;
+
+        container.appendChild(icon);
+        container.appendChild(text);
+        document.body.appendChild(container);
+
+        setTimeout(() => {
+          container.style.transition = 'opacity 0.4s';
+          container.style.opacity = '0';
+          setTimeout(() => container.remove(), 400);
+        }, 4000);
+      }
+    </script>
+
+  </body>
+</html>

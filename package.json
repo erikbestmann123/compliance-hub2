@@ -1,0 +1,23 @@
+{
+  "name": "onesource-demo",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "playwright test",
+    "test:a11y": "playwright test compliance-summary.a11y",
+    "test:unit": "playwright test compliance-summary.unit",
+    "test:coverage": "playwright test --reporter=html"
+  },
+  "dependencies": {
+    "@saffron/core-components": "^3.9.0",
+    "@saffron/core-styles": "^3.6.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.9.0",
+    "@playwright/test": "^1.44.0",
+    "vite": "^5.4.0"
+  }
+}

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Page | ONESOURCE</title>
+    <script type="module" src="/main.js"></script>
+
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: "Clario", "Helvetica Neue", Arial, sans-serif;
+        background-color: #f5f5f5;
+      }
+
+      .page-layout {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .main-content {
+        flex: 1;
+        padding: 2rem 2.5rem;
+        max-width: 800px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .component-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        align-items: center;
+      }
+
+      .section-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #666;
+        margin: 0 0 0.5rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page-layout">
+
+      <!-- Header -->
+      <saf-product-header
+        product-name="ONESOURCE"
+        tasks-aria-label="Product Navigation"
+        global-aria-label="User Menu"
+      >
+        <saf-anchor href="/" slot="logo">
+          <saf-logo appearance="1-color-reversed" product-name="ONESOURCE"></saf-logo>
+        </saf-anchor>
+        <div slot="global">
+          <saf-product-header-item>
+            <saf-button appearance="tertiary" icon-only>
+              <saf-icon icon-name="circle-user"></saf-icon>
+              <saf-sr-only>User profile</saf-sr-only>
+            </saf-button>
+          </saf-product-header-item>
+        </div>
+      </saf-product-header>
+
+      <!-- Content -->
+      <main class="main-content" role="main">
+        <h1>Saffron Component Test Page</h1>
+
+        <!-- Buttons -->
+        <p class="section-label">Buttons</p>
+        <div class="component-row">
+          <saf-button appearance="primary">Primary</saf-button>
+          <saf-button appearance="secondary">Secondary</saf-button>
+          <saf-button appearance="tertiary">Tertiary</saf-button>
+          <saf-button appearance="primary" disabled>Disabled</saf-button>
+        </div>
+
+        <!-- Icons -->
+        <p class="section-label">Icons</p>
+        <div class="component-row">
+          <saf-icon icon-name="house"></saf-icon>
+          <saf-icon icon-name="star"></saf-icon>
+          <saf-icon icon-name="bell"></saf-icon>
+          <saf-icon icon-name="circle-user"></saf-icon>
+          <saf-icon icon-name="magnifying-glass"></saf-icon>
+          <saf-icon icon-name="circle-question"></saf-icon>
+          <saf-icon icon-name="gear"></saf-icon>
+        </div>
+
+        <!-- Text field -->
+        <p class="section-label">Text Field</p>
+        <div class="component-row">
+          <saf-text-field label="First name" placeholder="Enter first name"></saf-text-field>
+          <saf-text-field label="Last name" placeholder="Enter last name"></saf-text-field>
+        </div>
+
+        <!-- Anchor -->
+        <p class="section-label">Anchors</p>
+        <div class="component-row">
+          <saf-anchor href="#">Default link</saf-anchor>
+          <saf-anchor href="#" appearance="button-primary">Link as button</saf-anchor>
+        </div>
+
+        <!-- Divider -->
+        <saf-divider></saf-divider>
+
+        <p style="color:#666; font-size:0.9rem; margin-top:1.5rem;">
+          Page loaded successfully. Saffron components above should render if
+          <code>@saffron/core-components</code> is installed and the Vite dev server is running.
+        </p>
+      </main>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolios | Compliance Hub | Thomson Reuters</title>
+    <script type="module" src="/main.js"></script>
+    <link rel="stylesheet" href="/portfolios.css" />
+  </head>
+
+  <body>
+    <div id="saffron_implmentation_100" class="portfolios-page">
+
+      <!-- ── Skip Navigation ──────────────────────────────────── -->
+      <a href="#main-content" class="skip-link">Skip to main content</a>
+
+      <!-- ── Product Header ──────────────────────────────────── -->
+      <saf-product-header
+        product-name="COMPLIANCE HUB"
+        tasks-aria-label="Product Navigation"
+        global-aria-label="User Menu"
+      >
+        <saf-anchor href="/" slot="logo">
+          <saf-logo appearance="1-color-reversed" product-name="COMPLIANCE HUB"></saf-logo>
+        </saf-anchor>
+        <div slot="tasks">
+          <saf-product-header-item>
+            <saf-button appearance="tertiary" icon-only a11y-aria-label="Home">
+              <saf-icon icon-name="house"></saf-icon>
+              <saf-sr-only>Home</saf-sr-only>
+            </saf-button>
+          </saf-product-header-item>
+          <saf-product-header-item>
+            <saf-button appearance="tertiary" icon-only a11y-aria-label="Search">
+              <saf-icon icon-name="magnifying-glass"></saf-icon>
+              <saf-sr-only>Search</saf-sr-only>
+            </saf-button>
+          </saf-product-header-item>
+          <saf-product-header-item>
+            <saf-button appearance="tertiary" icon-only a11y-aria-label="Favorites">
+              <saf-icon icon-name="star"></saf-icon>
+              <saf-sr-only>Favorites</saf-sr-only>
+            </saf-button>
+          </saf-product-header-item>
+          <saf-product-header-item>
+            <saf-button appearance="tertiary" icon-only a11y-aria-label="Bookmarks">
+              <saf-icon icon-name="bookmark"></saf-icon>
+              <saf-sr-only>Bookmarks</saf-sr-only>
+            </saf-button>
+          </saf-product-header-item>
+          <saf-product-header-item>
+            <saf-button appearance="tertiary" icon-only a11y-aria-label="History">
+              <saf-icon icon-name="clock-rotate-left"></saf-icon>
+              <saf-sr-only>History</saf-sr-only>
+            </saf-button>
+          </saf-product-header-item>
+        </div>
+        <div slot="global">
+          <saf-product-header-item>
+            <saf-button appearance="tertiary" icon-only a11y-aria-label="Help">
+              <saf-icon icon-name="circle-question"></saf-icon>
+              <saf-sr-only>Help</saf-sr-only>
+            </saf-button>
+          </saf-product-header-item>
+          <saf-product-header-item>
+            <saf-button appearance="tertiary" icon-only a11y-aria-label="Notifications">
+              <saf-icon icon-name="bell"></saf-icon>
+              <saf-sr-only>Notifications</saf-sr-only>
+            </saf-button>
+          </saf-product-header-item>
+          <saf-product-header-item>
+            <saf-button appearance="tertiary" icon-only a11y-aria-label="User profile">
+              <saf-icon icon-name="circle-user"></saf-icon>
+              <saf-sr-only>Jane Doe ONESOURCE PM (362)</saf-sr-only>
+            </saf-button>
+          </saf-product-header-item>
+        </div>
+      </saf-product-header>
+
+      <!-- ── Body (sidebar + main) ────────────────────────────── -->
+      <div class="portfolios-body">
+
+        <!-- ── Left Navigation Sidebar ────────────────────────── -->
+        <saf-side-nav
+          class="left-nav"
+          state="closed"
+          open-aria-label="Open navigation"
+          close-aria-label="Close navigation"
+          open-icon-name="arrow-right-from-line"
+          close-icon-name="arrow-left-from-line"
+          aria-label="Application navigation"
+        >
+          <saf-menu-item has-link url="#">
+            <saf-icon icon-name="objects-column" slot="start"></saf-icon>
+            Compliance Hub dashboard
+          </saf-menu-item>
+          <saf-menu-item has-link url="#" current>
+            <saf-icon icon-name="globe-stand" appearance="solid" slot="start"></saf-icon>
+            Portfolios
+          </saf-menu-item>
+          <saf-menu-item has-link url="#">
+            <span class="fa-custom-icon fa-custom-icon--f274" slot="start" aria-hidden="true"></span>
+            Regulatory deadlines
+          </saf-menu-item>
+          <saf-menu-item has-link url="#">
+            <span class="fa-custom-icon fa-custom-icon--f024" slot="start" aria-hidden="true"></span>
+            Jurisdiction profiles
+          </saf-menu-item>
+          <saf-menu-item has-link url="#">
+            <span class="fa-custom-icon fa-custom-icon--f0a1" slot="start" aria-hidden="true"></span>
+            Updates
+          </saf-menu-item>
+          <saf-menu-item has-link url="#">
+            <span class="fa-custom-icon fa-custom-icon--f279" slot="start" aria-hidden="true"></span>
+            Coverage
+          </saf-menu-item>
+          <saf-menu-item has-link url="#">
+            <saf-icon icon-name="circle-question" slot="start"></saf-icon>
+            Help
+          </saf-menu-item>
+        </saf-side-nav>
+
+        <!-- ── Main Page Content ──────────────────────────────── -->
+        <main class="main-page" id="main-content">
+
+          <!-- ── Page Header ───────────────────────────────────── -->
+          <header class="page-header">
+            <div class="breadcrumbs-row">
+              <saf-breadcrumb aria-label="Breadcrumb navigation">
+                <saf-breadcrumb-item href="/">Home</saf-breadcrumb-item>
+                <saf-breadcrumb-item>Portfolios</saf-breadcrumb-item>
+              </saf-breadcrumb>
+            </div>
+
+            <div class="page-title-row">
+              <div class="page-title-content">
+                <h1>Portfolios</h1>
+                <p class="subtitle">Use portfolios to track regulatory content for specific markets or scenarios.</p>
+              </div>
+              <div class="topic-selector">
+                <saf-select label="Topic" density="compact">
+                  <saf-option value="e-invoicing" selected>E-invoicing and CTC</saf-option>
+                  <saf-option value="tax-compliance">Tax compliance</saf-option>
+                  <saf-option value="transfer-pricing">Transfer pricing</saf-option>
+                </saf-select>
+              </div>
+            </div>
+
+            <div class="portfolio-tabs">
+              <saf-tabs orientation="horizontal" aria-label="Portfolio tabs">
+                <saf-tab id="tab-portfolio-1">Portfolio name 1</saf-tab>
+                <saf-tab id="tab-portfolio-2">Portfolio name 2</saf-tab>
+                <saf-tab id="tab-portfolio-3">Portfolio name 3</saf-tab>
+                <saf-tab id="tab-portfolio-4">Portfolio name 4</saf-tab>
+                <saf-tab id="tab-portfolio-5">Portfolio name 5</saf-tab>
+
+                <!-- Tab Panel 1: Primary portfolio content -->
+                <saf-tab-panel>
+                  <div class="body-content">
+
+                    <!-- ── Primary Actions Bar ─────────────────────── -->
+                    <div class="primary-actions-bar">
+                      <div class="portfolio-selector-area">
+                        <saf-select label="Portfolio" density="compact">
+                          <saf-option value="portfolio-1" selected>Portfolio name 1</saf-option>
+                          <saf-option value="portfolio-2">Portfolio name 2</saf-option>
+                          <saf-option value="portfolio-3">Portfolio name 3</saf-option>
+                        </saf-select>
+                      </div>
+                      <div class="action-buttons">
+                        <saf-anchor href="#manage-content" appearance="cta-secondary" density="compact">
+                          <saf-icon icon-name="cog" slot="start"></saf-icon>
+                          Manage content
+                        </saf-anchor>
+                        <div class="portfolio-actions-wrapper">
+                          <saf-button id="btn-portfolio-actions" appearance="primary" density="compact" aria-haspopup="true" aria-expanded="false" aria-controls="portfolio-actions-menu">
+                            Portfolio actions
+                            <saf-icon icon-name="chevron-down" slot="end"></saf-icon>
+                          </saf-button>
+                          <saf-menu id="portfolio-actions-menu" class="portfolio-actions-menu" hidden>
+                            <saf-menu-item>
+                              <saf-icon icon-name="pencil" slot="start"></saf-icon>
+                              Edit
+                            </saf-menu-item>
+                            <saf-menu-item>
+                              <saf-icon icon-name="clone" slot="start"></saf-icon>
+                              Duplicate
+                            </saf-menu-item>
+                            <saf-menu-item>
+                              <saf-icon icon-name="bell" slot="start"></saf-icon>
+                              Subscribe
+                            </saf-menu-item>
+                            <saf-divider role="separator"></saf-divider>
+                            <saf-menu-item>
+                              <saf-icon icon-name="trash" slot="start"></saf-icon>
+                              Delete
+                            </saf-menu-item>
+                          </saf-menu>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- ── Portfolio Map + Summary ──────────────────── -->
+                    <section class="portfolio-summary-section" aria-labelledby="portfolio-summary-heading">
+                      <div class="map-panel" role="img" aria-label="World map showing jurisdictions in this portfolio">
+                        <img src="/world-map.png" alt="World map highlighting portfolio jurisdictions in teal" class="map-image" />
+                      </div>
+                      <div class="portfolio-summary">
+                        <h2 id="portfolio-summary-heading">Portfolio summary</h2>
+
+                        <div class="metrics-row">
+                          <div class="metric-item">
+                            <span class="metric-label">
+                              Upcoming obligations
+                              <saf-button id="btn-upcoming-obligations" icon-only appearance="tertiary" density="extra-compact" a11y-aria-label="Info about upcoming obligations">
+                                <saf-icon icon-name="circle-info"></saf-icon>
+                              </saf-button>
+                              <saf-tooltip anchor="btn-upcoming-obligations" placement="top" trigger-on-click>Obligations taking effect in the future</saf-tooltip>
+                            </span>
+                            <span class="metric-value" aria-label="13 upcoming obligations">13</span>
+                          </div>
+                          <saf-divider orientation="vertical" role="separator"></saf-divider>
+                          <div class="metric-item">
+                            <span class="metric-label">
+                              Upcoming effective dates
+                              <saf-button id="btn-upcoming-effective" icon-only appearance="tertiary" density="extra-compact" a11y-aria-label="Info about upcoming effective dates">
+                                <saf-icon icon-name="circle-info"></saf-icon>
+                              </saf-button>
+                              <saf-tooltip anchor="btn-upcoming-effective" placement="top" trigger-on-click>Regulatory updates taking effect in the future</saf-tooltip>
+                            </span>
+                            <span class="metric-value" aria-label="50 upcoming effective dates">50</span>
+                          </div>
+                        </div>
+
+                        <div class="status-section">
+                          <span class="status-label">
+                            Updates by status
+                            <saf-button id="btn-updates-by-status" icon-only appearance="tertiary" density="extra-compact" a11y-aria-label="Info about updates by status">
+                              <saf-icon icon-name="circle-info"></saf-icon>
+                            </saf-button>
+                            <saf-tooltip anchor="btn-updates-by-status" placement="top" trigger-on-click>Your organization sets the compliance status for each regulatory update.</saf-tooltip>
+                          </span>
+                          <div class="status-badges" role="list" aria-label="Compliance status summary">
+                            <div role="listitem">
+                              <saf-badge id="badge-not-compliant" appearance="warning-light" tabindex="0">
+                                <saf-icon icon-name="triangle-exclamation" appearance="solid"></saf-icon>
+                                15
+                              </saf-badge>
+                              <saf-tooltip anchor="badge-not-compliant" placement="top">Not compliant</saf-tooltip>
+                            </div>
+                            <div role="listitem">
+                              <saf-badge id="badge-needs-review" appearance="info-light" tabindex="0">
+                                <saf-icon icon-name="circle-info" appearance="solid"></saf-icon>
+                                50
+                              </saf-badge>
+                              <saf-tooltip anchor="badge-needs-review" placement="top">Needs review</saf-tooltip>
+                            </div>
+                            <div role="listitem">
+                              <saf-badge id="badge-compliant" appearance="success-light" tabindex="0">
+                                <saf-icon icon-name="circle-check" appearance="solid"></saf-icon>
+                                25
+                              </saf-badge>
+                              <saf-tooltip anchor="badge-compliant" placement="top">Compliant</saf-tooltip>
+                            </div>
+                            <div role="listitem">
+                              <saf-badge id="badge-not-applicable" appearance="neutral-light" tabindex="0">
+                                <saf-icon icon-name="circle" appearance="solid"></saf-icon>
+                                30
+                              </saf-badge>
+                              <saf-tooltip anchor="badge-not-applicable" placement="top">Not applicable</saf-tooltip>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+
+                    <!-- ── Obligations Section ─────────────────────── -->
+                    <section class="obligations-section" aria-labelledby="obligations-heading">
+                      <div class="section-header">
+                        <h2 id="obligations-heading">Obligations</h2>
+                        <p class="section-subheader">Review compliance obligations that currently apply or are scheduled to take effect across the jurisdictions in this portfolio.</p>
+                      </div>
+
+                      <div class="metrics-row">
+                        <div class="metric-item">
+                          <span class="metric-label">Jurisdictions</span>
+                          <span class="metric-value" aria-label="19 jurisdictions">19</span>
+                        </div>
+                        <saf-divider orientation="vertical" role="separator"></saf-divider>
+                        <div class="metric-item">
+                          <span class="metric-label">Obligations in effect</span>
+                          <span class="metric-value" aria-label="51 obligations in effect">51</span>
+                        </div>
+                        <saf-divider orientation="vertical" role="separator"></saf-divider>
+                        <div class="metric-item">
+                          <span class="metric-label">
+                            Upcoming obligations
+                            <saf-button id="btn-obligations-upcoming" icon-only appearance="tertiary" density="extra-compact" a11y-aria-label="Info about upcoming obligations">
+                              <saf-icon icon-name="circle-info"></saf-icon>
+                            </saf-button>
+                            <saf-tooltip anchor="btn-obligations-upcoming" placement="top" trigger-on-click>Obligations taking effect in the future</saf-tooltip>
+                          </span>
+                          <span class="metric-value" aria-label="13 upcoming obligations">13</span>
+                        </div>
+                      </div>
+
+                      <div class="jurisdictions-area">
+                        <h3 id="jurisdictions-heading">Jurisdictions in this portfolio</h3>
+                        <nav class="jurisdictions-grid" aria-labelledby="jurisdictions-heading">
+                          <saf-anchor href="#belgium">Belgium</saf-anchor>
+                          <saf-anchor href="#canada">Canada</saf-anchor>
+                          <saf-anchor href="#finland">Finland</saf-anchor>
+                          <saf-anchor href="#france">France</saf-anchor>
+                          <saf-anchor href="#germany">Germany</saf-anchor>
+                          <saf-anchor href="#ireland">Ireland</saf-anchor>
+                          <saf-anchor href="#italy">Italy</saf-anchor>
+                          <saf-anchor href="#japan">Japan</saf-anchor>
+                          <saf-anchor href="#mexico">Mexico</saf-anchor>
+                          <saf-anchor href="#netherlands">Netherlands</saf-anchor>
+                          <saf-anchor href="#norway">Norway</saf-anchor>
+                          <saf-anchor href="#portugal">Portugal</saf-anchor>
+                          <saf-anchor href="#south-korea">South Korea</saf-anchor>
+                          <saf-anchor href="#spain">Spain</saf-anchor>
+                          <saf-anchor href="#sweden">Sweden</saf-anchor>
+                          <saf-anchor href="#switzerland">Switzerland</saf-anchor>
+                          <saf-anchor href="#taiwan">Taiwan</saf-anchor>
+                          <saf-anchor href="#uk">United Kingdom</saf-anchor>
+                          <saf-anchor href="#us">United States</saf-anchor>
+                        </nav>
+                      </div>
+
+                      <div class="obligations-accordions">
+                        <!-- Accordion 1: Obligations in effect -->
+                        <saf-accordion>
+                          <saf-accordion-item>
+                            <span slot="heading">Obligations in effect</span>
+                            <div class="obligations-table-wrapper">
+                              <table class="obligations-table">
+                                <thead>
+                                  <tr>
+                                    <th class="col-jurisdiction">
+                                      <span class="th-content">Jurisdiction <button class="sort-btn" aria-label="Sort by jurisdiction"><saf-icon icon-name="arrows-up-down"></saf-icon></button></span>
+                                    </th>
+                                    <th>Digital control</th>
+                                    <th>Document type</th>
+                                    <th>Transaction type</th>
+                                    <th>CTC model</th>
+                                    <th>Frequency</th>
+                                    <th>Comments</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="tbody-in-effect"></tbody>
+                              </table>
+                              <saf-pagination id="pag-in-effect"></saf-pagination>
+                            </div>
+                          </saf-accordion-item>
+                        </saf-accordion>
+
+                        <!-- Accordion 2: Upcoming obligations -->
+                        <saf-accordion>
+                          <saf-accordion-item>
+                            <span slot="heading">Upcoming obligations</span>
+                            <div class="obligations-table-wrapper">
+                              <table class="obligations-table">
+                                <thead>
+                                  <tr>
+                                    <th class="col-jurisdiction">
+                                      <span class="th-content">Jurisdiction <button class="sort-btn" aria-label="Sort by jurisdiction"><saf-icon icon-name="arrows-up-down"></saf-icon></button></span>
+                                    </th>
+                                    <th>Digital control</th>
+                                    <th>Document type</th>
+                                    <th>Transaction type</th>
+                                    <th>CTC model</th>
+                                    <th>Frequency</th>
+                                    <th>Comments</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="tbody-upcoming"></tbody>
+                              </table>
+                              <saf-pagination id="pag-upcoming"></saf-pagination>
+                            </div>
+                          </saf-accordion-item>
+                        </saf-accordion>
+                      </div>
+                    </section>
+
+                    <!-- ── Latest Regulatory Updates ────────────────── -->
+                    <section class="latest-updates-section" aria-labelledby="latest-updates-heading">
+                      <div class="section-header">
+                        <h2 id="latest-updates-heading">Latest regulatory updates</h2>
+                        <p class="section-subheader">Review regulatory news and developments that may introduce, change, or clarify obligations in this portfolio.</p>
+                      </div>
+
+                      <div class="updates-container">
+                        <div class="toolbar-row">
+                          <div class="toolbar-search">
+                            <span class="search-label" id="updates-search-label">Search</span>
+                            <saf-search-field density="compact" placeholder="Search updates..." aria-labelledby="updates-search-label"></saf-search-field>
+                          </div>
+                          <saf-button appearance="secondary" density="compact">
+                            <saf-icon icon-name="file-export" slot="start"></saf-icon>
+                            Export
+                          </saf-button>
+                        </div>
+
+                        <p class="status-note">Compliance status reflects your organization's assessment of each update. Some updates don't require compliance action and therefore don't include a status.</p>
+
+                        <div class="updates-grid" role="list" aria-label="Regulatory update cards">
+                          <div role="listitem">
+                            <saf-card density="standard" appearance="vertical">
+                              <div slot="eyebrow" class="card-eyebrow">April 12, 2023 | Mexico</div>
+                              <span slot="heading">Title</span>
+                              <div slot="content">
+                                <p class="card-body-text">Extension of the timeline to comply with new CFDI version 4.0.</p>
+                                <saf-anchor href="#show-more">Show more <saf-icon icon-name="chevron-down" slot="end"></saf-icon></saf-anchor>
+                                <div class="card-actions">
+                                  <saf-badge appearance="success"><saf-icon icon-name="circle-check" appearance="solid"></saf-icon> Compliant</saf-badge>
+                                  <saf-button appearance="tertiary" density="compact">Update status <saf-icon icon-name="chevron-down" slot="end"></saf-icon></saf-button>
+                                </div>
+                              </div>
+                            </saf-card>
+                          </div>
+                          <div role="listitem">
+                            <saf-card density="standard" appearance="vertical">
+                              <div slot="eyebrow" class="card-eyebrow">April 12, 2023 | Belgium</div>
+                              <span slot="heading">General news update</span>
+                              <div slot="content">
+                                <p class="card-body-text">General news update that Belgium updated its budget for the fiscal year 2025-26.</p>
+                                <saf-anchor href="#show-more">Show more <saf-icon icon-name="chevron-down" slot="end"></saf-icon></saf-anchor>
+                                <div class="card-actions">
+                                  <span></span>
+                                  <saf-button appearance="tertiary" density="compact">Update status <saf-icon icon-name="chevron-down" slot="end"></saf-icon></saf-button>
+                                </div>
+                              </div>
+                            </saf-card>
+                          </div>
+                          <div role="listitem">
+                            <saf-card density="standard" appearance="vertical">
+                              <div slot="eyebrow" class="card-eyebrow">April 9, 2023 | Canada</div>
+                              <span slot="heading">Title</span>
+                              <div slot="content">
+                                <p class="card-body-text">Extension of the timeline to comply with new CFDI version 4.0.</p>
+                                <saf-anchor href="#show-more">Show more <saf-icon icon-name="chevron-down" slot="end"></saf-icon></saf-anchor>
+                                <div class="card-actions">
+                                  <span></span>
+                                  <saf-button appearance="tertiary" density="compact">Update status <saf-icon icon-name="chevron-down" slot="end"></saf-icon></saf-button>
+                                </div>
+                              </div>
+                            </saf-card>
+                          </div>
+                          <div role="listitem">
+                            <saf-card density="standard" appearance="vertical">
+                              <div slot="eyebrow" class="card-eyebrow">April 5, 2023 | Mexico</div>
+                              <span slot="heading">Title</span>
+                              <div slot="content">
+                                <p class="card-body-text">Extension of the timeline to comply with new CFDI version 4.1.</p>
+                                <saf-anchor href="#show-more">Show more <saf-icon icon-name="chevron-down" slot="end"></saf-icon></saf-anchor>
+                                <div class="card-actions">
+                                  <saf-badge appearance="success"><saf-icon icon-name="circle-check" appearance="solid"></saf-icon> Compliant</saf-badge>
+                                  <saf-button appearance="tertiary" density="compact">Update status <saf-icon icon-name="chevron-down" slot="end"></saf-icon></saf-button>
+                                </div>
+                              </div>
+                            </saf-card>
+                          </div>
+                          <div role="listitem">
+                            <saf-card density="standard" appearance="vertical">
+                              <div slot="eyebrow" class="card-eyebrow">April 12, 2023 | France</div>
+                              <span slot="heading">Title</span>
+                              <div slot="content">
+                                <p class="card-body-text">Extension of the timeline to comply with new CFDI version 4.0.</p>
+                                <saf-anchor href="#show-more">Show more <saf-icon icon-name="chevron-down" slot="end"></saf-icon></saf-anchor>
+                                <div class="card-actions">
+                                  <saf-badge appearance="success"><saf-icon icon-name="circle-check" appearance="solid"></saf-icon> Compliant</saf-badge>
+                                  <saf-button appearance="tertiary" density="compact">Update status <saf-icon icon-name="chevron-down" slot="end"></saf-icon></saf-button>
+                                </div>
+                              </div>
+                            </saf-card>
+                          </div>
+                          <div role="listitem">
+                            <saf-card density="standard" appearance="vertical">
+                              <div slot="eyebrow" class="card-eyebrow">April 12, 2023 | Mexico</div>
+                              <span slot="heading">Title</span>
+                              <div slot="content">
+                                <p class="card-body-text">Extension of the timeline to comply with new CFDI version 4.0.</p>
+                                <saf-anchor href="#show-more">Show more <saf-icon icon-name="chevron-down" slot="end"></saf-icon></saf-anchor>
+                                <div class="card-actions">
+                                  <saf-badge appearance="success"><saf-icon icon-name="circle-check" appearance="solid"></saf-icon> Compliant</saf-badge>
+                                  <saf-button appearance="tertiary" density="compact">Update status <saf-icon icon-name="chevron-down" slot="end"></saf-icon></saf-button>
+                                </div>
+                              </div>
+                            </saf-card>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="load-more-row">
+                        <saf-button appearance="secondary" density="standard">Load more</saf-button>
+                      </div>
+                    </section>
+
+                    <!-- ── Regulatory Timelines ────────────────────── -->
+                    <section class="regulatory-timelines-section" aria-labelledby="timelines-heading">
+                      <div class="section-header">
+                        <h2 id="timelines-heading">Regulatory timelines</h2>
+                        <p class="section-subheader">Understand when regulatory updates become effective in each jurisdiction, so your team can plan and prepare for compliance.</p>
+                      </div>
+
+                      <p class="timelines-note">
+                        This view includes only updates with a defined lead time between announcement and effective date.
+                        For all regulatory updates, including broader news, visit
+                        <saf-anchor href="#">Updates</saf-anchor>.
+                      </p>
+
+                      <div class="timelines-toolbar">
+                        <saf-button appearance="secondary" density="compact">
+                          <saf-icon icon-name="file-export" slot="start"></saf-icon>
+                          Export
+                        </saf-button>
+                        <saf-button-group density="compact">
+                          <saf-button id="timelines-btn-chart" appearance="primary" aria-pressed="true">Chart</saf-button>
+                          <saf-button id="timelines-btn-table" appearance="secondary" aria-pressed="false">Table</saf-button>
+                        </saf-button-group>
+                      </div>
+
+                      <div class="timelines-chart-placeholder" role="img" aria-label="Gantt chart — Google Looker integration pending">
+                        <p>Placeholder for Gantt Chart integration with Google Looker</p>
+                      </div>
+                    </section>
+
+                  </div>
+                </saf-tab-panel>
+
+                <saf-tab-panel>
+                  <div class="empty-portfolio-panel">
+                    <div class="empty-portfolio-selector">
+                      <label class="empty-portfolio-label" for="select-portfolio-2">Portfolio</label>
+                      <saf-select id="select-portfolio-2" density="compact" placeholder="Select a portfolio" aria-label="Select a portfolio">
+                        <saf-option value="portfolio-1">Portfolio name 1</saf-option>
+                        <saf-option value="portfolio-2">Portfolio name 2</saf-option>
+                        <saf-option value="portfolio-3">Portfolio name 3</saf-option>
+                        <saf-option value="portfolio-4">Portfolio name 4</saf-option>
+                        <saf-option value="portfolio-5">Portfolio name 5</saf-option>
+                      </saf-select>
+                    </div>
+                    <div class="empty-portfolio-state">
+                      <saf-icon icon-name="globe-stand" class="empty-portfolio-icon"></saf-icon>
+                      <p class="empty-portfolio-heading">No portfolio is assigned to this tab</p>
+                      <p class="empty-portfolio-subtext">Create a new portfolio or select an existing one for this tab.</p>
+                      <saf-button appearance="primary">Create portfolio</saf-button>
+                    </div>
+                  </div>
+                </saf-tab-panel>
+                <saf-tab-panel>
+                  <div class="empty-portfolio-panel">
+                    <div class="empty-portfolio-selector">
+                      <label class="empty-portfolio-label" for="select-portfolio-3">Portfolio</label>
+                      <saf-select id="select-portfolio-3" density="compact" placeholder="Select a portfolio" aria-label="Select a portfolio">
+                        <saf-option value="portfolio-1">Portfolio name 1</saf-option>
+                        <saf-option value="portfolio-2">Portfolio name 2</saf-option>
+                        <saf-option value="portfolio-3">Portfolio name 3</saf-option>
+                        <saf-option value="portfolio-4">Portfolio name 4</saf-option>
+                        <saf-option value="portfolio-5">Portfolio name 5</saf-option>
+                      </saf-select>
+                    </div>
+                    <div class="empty-portfolio-state">
+                      <saf-icon icon-name="globe-stand" class="empty-portfolio-icon"></saf-icon>
+                      <p class="empty-portfolio-heading">No portfolio is assigned to this tab</p>
+                      <p class="empty-portfolio-subtext">Create a new portfolio or select an existing one for this tab.</p>
+                      <saf-button appearance="primary">Create portfolio</saf-button>
+                    </div>
+                  </div>
+                </saf-tab-panel>
+                <saf-tab-panel>
+                  <div class="empty-portfolio-panel">
+                    <div class="empty-portfolio-selector">
+                      <label class="empty-portfolio-label" for="select-portfolio-4">Portfolio</label>
+                      <saf-select id="select-portfolio-4" density="compact" placeholder="Select a portfolio" aria-label="Select a portfolio">
+                        <saf-option value="portfolio-1">Portfolio name 1</saf-option>
+                        <saf-option value="portfolio-2">Portfolio name 2</saf-option>
+                        <saf-option value="portfolio-3">Portfolio name 3</saf-option>
+                        <saf-option value="portfolio-4">Portfolio name 4</saf-option>
+                        <saf-option value="portfolio-5">Portfolio name 5</saf-option>
+                      </saf-select>
+                    </div>
+                    <div class="empty-portfolio-state">
+                      <saf-icon icon-name="globe-stand" class="empty-portfolio-icon"></saf-icon>
+                      <p class="empty-portfolio-heading">No portfolio is assigned to this tab</p>
+                      <p class="empty-portfolio-subtext">Create a new portfolio or select an existing one for this tab.</p>
+                      <saf-button appearance="primary">Create portfolio</saf-button>
+                    </div>
+                  </div>
+                </saf-tab-panel>
+                <saf-tab-panel>
+                  <div class="empty-portfolio-panel">
+                    <div class="empty-portfolio-selector">
+                      <label class="empty-portfolio-label" for="select-portfolio-5">Portfolio</label>
+                      <saf-select id="select-portfolio-5" density="compact" placeholder="Select a portfolio" aria-label="Select a portfolio">
+                        <saf-option value="portfolio-1">Portfolio name 1</saf-option>
+                        <saf-option value="portfolio-2">Portfolio name 2</saf-option>
+                        <saf-option value="portfolio-3">Portfolio name 3</saf-option>
+                        <saf-option value="portfolio-4">Portfolio name 4</saf-option>
+                        <saf-option value="portfolio-5">Portfolio name 5</saf-option>
+                      </saf-select>
+                    </div>
+                    <div class="empty-portfolio-state">
+                      <saf-icon icon-name="globe-stand" class="empty-portfolio-icon"></saf-icon>
+                      <p class="empty-portfolio-heading">No portfolio is assigned to this tab</p>
+                      <p class="empty-portfolio-subtext">Create a new portfolio or select an existing one for this tab.</p>
+                      <saf-button appearance="primary">Create portfolio</saf-button>
+                    </div>
+                  </div>
+                </saf-tab-panel>
+              </saf-tabs>
+            </div>
+          </header>
+
+        </main>
+      </div>
+    </div>
+  <script>
+  (function () {
+    // ── Data ────────────────────────────────────────────────────────────────
+    const DC = 'E-invoicing &amp; CTC';
+    const DT = 'Electronic invoice';
+    function r(j, href, isFirst, tx, ctc, freq, comments) {
+      return { jurisdiction: j, href, isFirst, digitalControl: DC, docType: DT, txType: tx, ctcModel: ctc, frequency: freq, hasComments: comments };
+    }
+    function e(tx, ctc, freq, comments) {
+      return r('', null, false, tx, ctc, freq, comments);
+    }
+
+    const obligationsInEffect = [
+      r('Belgium',       '#belgium',       true,  'B2B',           'Centralised / Peppol',    'Annual',       true),
+      e(                                          'B2G',           'Centralised / Peppol',    'Quarterly',    false),
+      e(                                          'B2G central',   'Post-Audit',               'Annual',       false),
+      r('Canada',        '#canada',        true,  'B2B',           'Post-Audit',               'Annual',       true),
+      e(                                          'B2G',           'Clearance / Centralized',  'Quarterly',    false),
+      r('Finland',       '#finland',       true,  'B2B',           'Post-Audit',               'Semi-annual',  false),
+      e(                                          'B2G',           'Interoperability / Peppol','Real-time',    false),
+      r('France',        '#france',        true,  'B2B',           'Clearance / Centralized',  'Monthly',      true),
+      e(                                          'B2G',           'Centralised / Peppol',     'Annual',       false),
+      e(                                          'B2G central',   'Clearance / Centralized',  'Quarterly',    false),
+      r('Germany',       '#germany',       true,  'B2B',           'Post-Audit',               'Annual',       false),
+      e(                                          'B2G central',   'Centralised / Peppol',     'Quarterly',    false),
+      e(                                          'B2G sub-central','Centralised / Peppol',    'Quarterly',    false),
+      r('Ireland',       '#ireland',       true,  'B2B',           'Post-Audit',               'Annual',       true),
+      e(                                          'B2G',           'Centralised / Peppol',     'Semi-annual',  false),
+      r('Italy',         '#italy',         true,  'B2B',           'Clearance / Centralized',  'Real-time',    true),
+      e(                                          'B2G',           'Clearance / Centralized',  'Monthly',      false),
+      e(                                          'B2G central',   'Post-Audit',               'Annual',       false),
+      r('Japan',         '#japan',         true,  'B2B',           'Post-Audit',               'Annual',       false),
+      e(                                          'B2B sub-sector','Centralised / Peppol',     'Quarterly',    true),
+      e(                                          'B2G',           'Interoperability / Peppol','Annual',       false),
+      r('Mexico',        '#mexico',        true,  'B2B',           'Clearance / Centralized',  'Monthly',      true),
+      e(                                          'B2G',           'Post-Audit',               'Quarterly',    false),
+      r('Netherlands',   '#netherlands',   true,  'B2B',           'Centralised / Peppol',     'Annual',       false),
+      e(                                          'B2G',           'Centralised / Peppol',     'Quarterly',    true),
+      e(                                          'B2G central',   'Interoperability / Peppol','Annual',       false),
+      r('Norway',        '#norway',        true,  'B2B',           'Post-Audit',               'Annual',       true),
+      e(                                          'B2G',           'Centralised / Peppol',     'Semi-annual',  false),
+      r('Portugal',      '#portugal',      true,  'B2B',           'Clearance / Centralized',  'Monthly',      false),
+      e(                                          'B2G',           'Post-Audit',               'Annual',       false),
+      e(                                          'B2G sub-central','Centralised / Peppol',    'Quarterly',    true),
+      r('South Korea',   '#south-korea',   true,  'B2B',           'Clearance / Centralized',  'Real-time',    true),
+      e(                                          'B2G',           'Clearance / Centralized',  'Monthly',      false),
+      e(                                          'B2G central',   'Centralised / Peppol',     'Annual',       false),
+      r('Spain',         '#spain',         true,  'B2B',           'Clearance / Centralized',  'Annual',       true),
+      e(                                          'B2G',           'Centralised / Peppol',     'Quarterly',    false),
+      e(                                          'B2G central',   'Post-Audit',               'Semi-annual',  false),
+      r('Sweden',        '#sweden',        true,  'B2B',           'Post-Audit',               'Annual',       false),
+      e(                                          'B2G',           'Centralised / Peppol',     'Quarterly',    true),
+      r('Switzerland',   '#switzerland',   true,  'B2B',           'Clearance / Centralized',  'Annual',       true),
+      e(                                          'B2G',           'Interoperability / Peppol','Semi-annual',  false),
+      r('Taiwan',        '#taiwan',        true,  'B2B',           'Post-Audit',               'Annual',       false),
+      e(                                          'B2G',           'Clearance / Centralized',  'Quarterly',    false),
+      r('United Kingdom','#uk',            true,  'B2B',           'Clearance / Centralized',  'Monthly',      true),
+      e(                                          'B2G',           'Centralised / Peppol',     'Annual',       false),
+      e(                                          'B2G central',   'Post-Audit',               'Quarterly',    false),
+      e(                                          'B2G sub-central','Centralised / Peppol',    'Annual',       false),
+      r('United States', '#us',            true,  'B2B',           'Post-Audit',               'Annual',       true),
+      e(                                          'B2G',           'Post-Audit',               'Quarterly',    false),
+      e(                                          'B2G central',   'Clearance / Centralized',  'Monthly',      false),
+    ];
+
+    const upcomingObligations = [
+      r('Belgium',       '#belgium',       true,  'B2B',  'Peppol',                    '2026 Q3',  true),
+      r('Canada',        '#canada',        true,  'B2B',  'Post-Audit',                '2026 Q4',  false),
+      r('Finland',       '#finland',       true,  'B2B',  'Centralised / Peppol',      '2027 Q1',  false),
+      r('France',        '#france',        true,  'B2B',  'Clearance / Centralized',   '2026 Q3',  true),
+      r('Germany',       '#germany',       true,  'B2G',  'Post-Audit',                '2027 Q2',  false),
+      r('Ireland',       '#ireland',       true,  'B2B',  'Centralised / Peppol',      '2027 Q1',  false),
+      r('Italy',         '#italy',         true,  'B2B',  'Clearance / Centralized',   '2026 Q4',  true),
+      r('Japan',         '#japan',         true,  'B2B',  'Post-Audit',                '2027 Q2',  false),
+      r('Mexico',        '#mexico',        true,  'B2B',  'Clearance / Centralized',   '2027 Q1',  false),
+      r('Netherlands',   '#netherlands',   true,  'B2B',  'Centralised / Peppol',      '2026 Q3',  false),
+      r('Norway',        '#norway',        true,  'B2G',  'Centralised / Peppol',      '2027 Q2',  false),
+      r('Portugal',      '#portugal',      true,  'B2B',  'Clearance / Centralized',   '2026 Q4',  false),
+      r('South Korea',   '#south-korea',   true,  'B2B',  'Clearance / Centralized',   '2027 Q1',  true),
+    ];
+
+    // ── Render ───────────────────────────────────────────────────────────────
+    function initTable(tbodyId, pagId, data) {
+      const tbody = document.getElementById(tbodyId);
+      const pagEl = document.getElementById(pagId);
+      if (!tbody || !pagEl) return;
+
+      const state = { data, currentPageIndex: 0, perPage: 10 };
+
+      // Configure saf-pagination properties (must be set via JS for arrays)
+      pagEl.totalItemCount = data.length;
+      pagEl.itemsPerPage = 10;
+      pagEl.currentPageIndex = 0;
+      pagEl.itemsArray = [10, 25, 50];
+
+      function renderPage() {
+        const start = state.currentPageIndex * state.perPage;
+        const rows = state.data.slice(start, start + state.perPage);
+        tbody.innerHTML = rows.map(row => `
+          <tr>
+            <td class="col-jurisdiction">
+              ${row.isFirst ? `<a href="${row.href}" class="jurisdiction-link">${row.jurisdiction}</a>` : ''}
+            </td>
+            <td>${row.digitalControl}</td>
+            <td>${row.docType}</td>
+            <td>${row.txType}</td>
+            <td>${row.ctcModel}</td>
+            <td>${row.frequency}</td>
+            <td>${row.hasComments ? `<button class="comments-btn">Comments <span aria-hidden="true">›</span></button>` : ''}</td>
+          </tr>
+        `).join('');
+      }
+
+      pagEl.addEventListener('change', (e) => {
+        state.currentPageIndex = e.detail ?? pagEl.currentPageIndex;
+        renderPage();
+      });
+
+      pagEl.addEventListener('items-per-page-change', (e) => {
+        state.perPage = e.detail ?? pagEl.itemsPerPage;
+        state.currentPageIndex = 0;
+        pagEl.currentPageIndex = 0;
+        renderPage();
+      });
+
+      renderPage();
+    }
+
+    function init() {
+      initTable('tbody-in-effect', 'pag-in-effect', obligationsInEffect);
+      initTable('tbody-upcoming', 'pag-upcoming', upcomingObligations);
+
+      // ── Portfolio actions dropdown ──────────────────────────
+      const actionsBtn = document.getElementById('btn-portfolio-actions');
+      const actionsMenu = document.getElementById('portfolio-actions-menu');
+
+      if (actionsBtn && actionsMenu) {
+        actionsBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = !actionsMenu.hidden;
+          actionsMenu.hidden = isOpen;
+          actionsBtn.setAttribute('aria-expanded', String(!isOpen));
+        });
+
+        // Close on outside click
+        document.addEventListener('click', () => {
+          actionsMenu.hidden = true;
+          actionsBtn.setAttribute('aria-expanded', 'false');
+        });
+
+        // Close when a menu item is selected
+        actionsMenu.addEventListener('click', () => {
+          actionsMenu.hidden = true;
+          actionsBtn.setAttribute('aria-expanded', 'false');
+        });
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !actionsMenu.hidden) {
+            actionsMenu.hidden = true;
+            actionsBtn.setAttribute('aria-expanded', 'false');
+            actionsBtn.focus();
+          }
+        });
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+  </script>
+  </body>
+</html>

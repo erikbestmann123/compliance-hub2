@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compliance Summary | ONESOURCE Digital Controls</title>
+
+    <!-- Saffron web components + styles (via Vite / bundler) -->
+    <script type="module" src="/main.js"></script>
+
+    <!-- Component stylesheet — no inline styles; Saffron tokens only -->
+    <link rel="stylesheet" href="/compliance-summary.css" />
+    <link rel="stylesheet" href="/regulatory-deadlines.css" />
+
+    <!-- Regulatory Deadlines chart module -->
+    <script type="module" src="/regulatory-deadlines.js"></script>
+
+    <style>
+      /* Page-level scaffolding only — not part of the component */
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        padding: var(--saf-spacing-6);
+        background-color: var(--saf-color-background-subtle, #f5f5f5);
+        font-family: var(--saf-font-family-body, "Source Sans 3", "Helvetica Neue", Arial, sans-serif);
+      }
+
+      .page-wrapper {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page-wrapper">
+      <!--
+        ================================================================
+        Compliance Summary — Organism component (atomic design)
+        Reusable: drop this <article> anywhere in your application.
+        id="saffron_implmentation_100" required by task specification.
+        ================================================================
+      -->
+      <article
+        id="saffron_implmentation_100"
+        class="compliance-summary"
+        aria-labelledby="compliance-title"
+        aria-roledescription="summary widget"
+      >
+        <!-- ── Notification badge (absolute top-right) ─────────── -->
+        <saf-badge
+          class="compliance-summary__notification"
+          appearance="info-light"
+          aria-label="1 new notification"
+        >1</saf-badge>
+
+        <div class="compliance-summary__container">
+
+          <!-- ── Header ──────────────────────────────────────────── -->
+          <header class="compliance-summary__header">
+
+            <div class="compliance-summary__title-group">
+              <!-- Eyebrow / breadcrumb context -->
+              <p
+                class="compliance-summary__eyebrow"
+                aria-hidden="true"
+              >Digital controls</p>
+              <h2
+                id="compliance-title"
+                class="compliance-summary__title"
+              >Compliance summary</h2>
+            </div>
+
+            <!-- Year filter -->
+            <div class="compliance-summary__filter">
+              <label
+                id="year-label"
+                class="compliance-summary__filter-label"
+                for="year-select"
+              >Year</label>
+              <saf-select
+                id="year-select"
+                aria-labelledby="year-label"
+                density="compact"
+                current-value="2025"
+              >
+                <option value="2026">2026</option>
+                <option value="2025" selected>2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+              </saf-select>
+            </div>
+
+          </header>
+
+          <!-- ── Stats panels ─────────────────────────────────────── -->
+          <div
+            class="compliance-summary__panels"
+            role="group"
+            aria-label="Compliance deadline statistics"
+          >
+
+            <!-- Panel: All deadlines -->
+            <section
+              class="compliance-summary__panel"
+              aria-labelledby="all-deadlines-title"
+            >
+              <h3
+                id="all-deadlines-title"
+                class="compliance-summary__panel-title"
+              >All deadlines</h3>
+
+              <dl class="compliance-summary__stats">
+
+                <!-- Stat group: counts -->
+                <div class="compliance-summary__stat-group">
+                  <div class="compliance-summary__stat">
+                    <dt class="compliance-summary__stat-label">Deadlines</dt>
+                    <dd class="compliance-summary__stat-value">78</dd>
+                  </div>
+                  <div class="compliance-summary__stat">
+                    <dt class="compliance-summary__stat-label">Jurisdictions</dt>
+                    <dd class="compliance-summary__stat-value">20</dd>
+                  </div>
+                </div>
+
+                <!-- Visual separator -->
+                <saf-divider
+                  orientation="vertical"
+                  role="separator"
+                  aria-hidden="true"
+                ></saf-divider>
+
+                <!-- Compliance status badges -->
+                <div class="compliance-summary__status-group">
+                  <dt class="compliance-summary__stat-label">Compliance status</dt>
+                  <dd class="compliance-summary__badges">
+                    <saf-badge
+                      appearance="success-light"
+                      aria-label="18 deadlines compliant"
+                    >
+                      <saf-icon
+                        icon-name="circle-check"
+                        appearance="solid"
+                        aria-hidden="true"
+                      ></saf-icon>
+                      18
+                    </saf-badge>
+                    <saf-badge
+                      appearance="warning-light"
+                      aria-label="27 deadlines with warnings"
+                    >
+                      <saf-icon
+                        icon-name="triangle-exclamation"
+                        appearance="solid"
+                        aria-hidden="true"
+                      ></saf-icon>
+                      27
+                    </saf-badge>
+                    <saf-badge
+                      appearance="info-light"
+                      aria-label="33 deadlines informational"
+                    >
+                      <saf-icon
+                        icon-name="circle-info"
+                        appearance="solid"
+                        aria-hidden="true"
+                      ></saf-icon>
+                      33
+                    </saf-badge>
+                  </dd>
+                </div>
+
+              </dl>
+            </section>
+
+            <!-- Vertical divider between panels -->
+            <saf-divider
+              orientation="vertical"
+              role="separator"
+              aria-hidden="true"
+            ></saf-divider>
+
+            <!-- Panel: Your deadlines -->
+            <section
+              class="compliance-summary__panel"
+              aria-labelledby="your-deadlines-title"
+            >
+              <h3
+                id="your-deadlines-title"
+                class="compliance-summary__panel-title"
+              >Your deadlines</h3>
+
+              <dl class="compliance-summary__stats">
+
+                <div class="compliance-summary__stat-group">
+                  <div class="compliance-summary__stat">
+                    <dt class="compliance-summary__stat-label">Deadlines</dt>
+                    <dd class="compliance-summary__stat-value">35</dd>
+                  </div>
+                  <div class="compliance-summary__stat">
+                    <dt class="compliance-summary__stat-label">Jurisdictions</dt>
+                    <dd class="compliance-summary__stat-value">7</dd>
+                  </div>
+                </div>
+
+                <saf-divider
+                  orientation="vertical"
+                  role="separator"
+                  aria-hidden="true"
+                ></saf-divider>
+
+                <div class="compliance-summary__status-group">
+                  <dt class="compliance-summary__stat-label">Compliance status</dt>
+                  <dd class="compliance-summary__badges">
+                    <saf-badge
+                      appearance="success-light"
+                      aria-label="8 of your deadlines compliant"
+                    >
+                      <saf-icon
+                        icon-name="circle-check"
+                        appearance="solid"
+                        aria-hidden="true"
+                      ></saf-icon>
+                      8
+                    </saf-badge>
+                    <saf-badge
+                      appearance="warning-light"
+                      aria-label="6 of your deadlines with warnings"
+                    >
+                      <saf-icon
+                        icon-name="triangle-exclamation"
+                        appearance="solid"
+                        aria-hidden="true"
+                      ></saf-icon>
+                      6
+                    </saf-badge>
+                    <saf-badge
+                      appearance="info-light"
+                      aria-label="21 of your deadlines informational"
+                    >
+                      <saf-icon
+                        icon-name="circle-info"
+                        appearance="solid"
+                        aria-hidden="true"
+                      ></saf-icon>
+                      21
+                    </saf-badge>
+                  </dd>
+                </div>
+
+              </dl>
+            </section>
+
+          </div><!-- /.compliance-summary__panels -->
+
+        </div><!-- /.compliance-summary__container -->
+      </article>
+
+      <!-- ================================================================
+           2. Regulatory Deadlines — Timeline Widget
+           (saffron_implmentation_100 reused as the page-level wrapper;
+            this organism gets its own landmark article below)
+           ================================================================ -->
+
+      <article
+        class="reg-deadlines"
+        aria-labelledby="rd-title"
+        aria-roledescription="regulatory deadlines timeline widget"
+      >
+        <div class="reg-deadlines__container">
+
+          <!-- ── Header ────────────────────────────────────────────── -->
+          <header class="reg-deadlines__header">
+
+            <!-- Left: eyebrow + heading -->
+            <div class="reg-deadlines__title-group">
+              <p class="reg-deadlines__eyebrow" aria-hidden="true">Digital controls</p>
+              <h2 id="rd-title" class="reg-deadlines__title">Regulatory deadlines</h2>
+            </div>
+
+            <!-- Right: controls -->
+            <div
+              class="reg-deadlines__controls"
+              role="group"
+              aria-label="Chart display controls"
+            >
+
+              <!-- View select -->
+              <div class="reg-deadlines__control-item">
+                <label
+                  id="rd-view-label"
+                  class="reg-deadlines__control-label"
+                  for="rd-view-select"
+                >View</label>
+                <saf-select
+                  id="rd-view-select"
+                  aria-labelledby="rd-view-label"
+                  density="compact"
+                  current-value="your-deadlines"
+                >
+                  <option value="all-deadlines">All deadlines</option>
+                  <option value="your-deadlines" selected>Your deadlines</option>
+                </saf-select>
+              </div>
+
+              <!-- Forecast select -->
+              <div class="reg-deadlines__control-item">
+                <label
+                  id="rd-forecast-label"
+                  class="reg-deadlines__control-label"
+                  for="rd-forecast-select"
+                >Forecast</label>
+                <saf-select
+                  id="rd-forecast-select"
+                  aria-labelledby="rd-forecast-label"
+                  density="compact"
+                  current-value="yearly"
+                >
+                  <option value="yearly" selected>Yearly</option>
+                  <option value="quarterly">Quarterly</option>
+                  <option value="monthly">Monthly</option>
+                </saf-select>
+              </div>
+
+              <!-- Timeline | Table toggle -->
+              <saf-button-group
+                class="reg-deadlines__view-toggle"
+                density="compact"
+                orientation="horizontal"
+                aria-label="Chart view mode"
+              >
+                <saf-button
+                  id="rd-btn-timeline"
+                  appearance="primary"
+                  density="compact"
+                  aria-pressed="true"
+                >Timeline</saf-button>
+                <saf-button
+                  id="rd-btn-table"
+                  appearance="secondary"
+                  density="compact"
+                  aria-pressed="false"
+                >Table</saf-button>
+              </saf-button-group>
+
+            </div>
+          </header>
+
+          <!-- ── Chart body ─────────────────────────────────────────── -->
+          <section
+            class="reg-deadlines__chart-section"
+            aria-label="Monthly deadlines visualisation"
+          >
+
+            <!-- Year navigator -->
+            <div
+              class="reg-deadlines__year-nav"
+              role="group"
+              aria-label="Navigate year"
+            >
+              <saf-button
+                id="rd-btn-prev-year"
+                icon-only
+                appearance="tertiary"
+                density="compact"
+                a11y-aria-label="Previous year"
+                aria-controls="rd-chart-canvas"
+              >
+                <saf-icon
+                  icon-name="chevron-left"
+                  appearance="solid"
+                  aria-hidden="true"
+                ></saf-icon>
+              </saf-button>
+
+              <h3
+                class="reg-deadlines__year"
+                aria-live="polite"
+                aria-atomic="true"
+              >2026</h3>
+
+              <saf-button
+                id="rd-btn-next-year"
+                icon-only
+                appearance="tertiary"
+                density="compact"
+                a11y-aria-label="Next year"
+                aria-controls="rd-chart-canvas"
+              >
+                <saf-icon
+                  icon-name="chevron-right"
+                  appearance="solid"
+                  aria-hidden="true"
+                ></saf-icon>
+              </saf-button>
+            </div>
+
+            <!-- Dot chart canvas (JS-rendered SVG) -->
+            <div
+              class="reg-deadlines__chart-wrap"
+              role="img"
+              aria-label="Regulatory deadlines dot chart — see table below for full data"
+            >
+              <!-- SVG injected by regulatory-deadlines.js -->
+              <div
+                id="rd-chart-canvas"
+                class="reg-deadlines__chart-canvas"
+                aria-hidden="true"
+              ></div>
+
+              <!-- Accessible data table (screen-reader only) -->
+              <table
+                class="reg-deadlines__visually-hidden"
+                id="rd-sr-table"
+              >
+                <caption>Regulatory deadlines by month</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Month</th>
+                    <th scope="col">Not compliant</th>
+                    <th scope="col">No status</th>
+                    <th scope="col">Compliant</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody id="reg-deadlines-table-body"></tbody>
+              </table>
+            </div>
+
+            <!-- Month axis -->
+            <div
+              class="reg-deadlines__axis"
+              aria-hidden="true"
+            >
+              <div class="reg-deadlines__axis-track">
+                <span class="reg-deadlines__axis-tick reg-deadlines__axis-tick--major">Jan</span>
+                <span class="reg-deadlines__axis-tick">Feb</span>
+                <span class="reg-deadlines__axis-tick">Mar</span>
+                <span class="reg-deadlines__axis-tick">Apr</span>
+                <span class="reg-deadlines__axis-tick">May</span>
+                <span class="reg-deadlines__axis-tick">Jun</span>
+                <span class="reg-deadlines__axis-tick">Jul</span>
+                <span class="reg-deadlines__axis-tick">Aug</span>
+                <span class="reg-deadlines__axis-tick">Sep</span>
+                <span class="reg-deadlines__axis-tick">Oct</span>
+                <span class="reg-deadlines__axis-tick">Nov</span>
+                <span class="reg-deadlines__axis-tick">Dec</span>
+              </div>
+            </div>
+
+          </section>
+
+          <!-- ── Footer: legend + CTA ───────────────────────────────── -->
+          <footer class="reg-deadlines__footer">
+
+            <ul
+              class="reg-deadlines__legend"
+              role="list"
+              aria-label="Chart legend"
+            >
+              <li class="reg-deadlines__legend-item">
+                <span
+                  class="reg-deadlines__legend-dot reg-deadlines__legend-dot--not-compliant"
+                  aria-hidden="true"
+                ></span>
+                <span>Not compliant</span>
+              </li>
+              <li class="reg-deadlines__legend-item">
+                <span
+                  class="reg-deadlines__legend-dot reg-deadlines__legend-dot--no-status"
+                  aria-hidden="true"
+                ></span>
+                <span>No status</span>
+              </li>
+              <li class="reg-deadlines__legend-item">
+                <span
+                  class="reg-deadlines__legend-dot reg-deadlines__legend-dot--compliant"
+                  aria-hidden="true"
+                ></span>
+                <span>Compliant</span>
+              </li>
+            </ul>
+
+            <saf-anchor
+              href="#"
+              class="reg-deadlines__cta"
+              aria-label="Go to regulatory deadlines"
+            >Go to deadlines</saf-anchor>
+
+          </footer>
+
+        </div>
+
+        <!-- Floating tooltip (positioned by JS) -->
+        <div
+          class="reg-deadlines__tooltip"
+          role="tooltip"
+          aria-live="polite"
+          aria-hidden="true"
+        >
+          <span class="reg-deadlines__tooltip-count">0</span>
+          <span class="reg-deadlines__tooltip-detail"></span>
+        </div>
+
+      </article>
+
+    </div><!-- /.page-wrapper -->
+  </body>
+</html>

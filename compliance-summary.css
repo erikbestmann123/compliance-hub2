@@ -1,0 +1,198 @@
+/* ============================================================
+   Compliance Summary Component — Atomic Design: Organism
+   Uses Saffron Design Tokens exclusively.
+   No inline styles; all values from @saffron/core-styles tokens.
+   ============================================================ */
+
+/* ── Card wrapper ──────────────────────────────────────────── */
+.compliance-summary {
+  position: relative;
+  width: 100%;
+  background-color: var(--saf-color-background-default);
+  background-image: linear-gradient(
+    162.974deg,
+    rgba(235, 254, 231, 0.3) 3.36%,
+    rgba(221, 240, 252, 0.3) 28.55%,
+    rgba(255, 255, 255, 0.3) 60.26%,
+    rgba(227, 254, 221, 0.3) 96.64%
+  );
+  border: 1px solid var(--saf-color-border-strong);
+  border-radius: var(--saf-border-radius-sm);
+  overflow: hidden;
+}
+
+/* ── Notification badge (top-right corner) ─────────────────── */
+.compliance-summary__notification {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(35%, -35%);
+  z-index: 1;
+}
+
+/* ── Inner container ───────────────────────────────────────── */
+.compliance-summary__container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--saf-spacing-4);
+  padding: var(--saf-spacing-6);
+}
+
+/* ── Header row ────────────────────────────────────────────── */
+.compliance-summary__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--saf-spacing-3);
+}
+
+/* ── Title group ───────────────────────────────────────────── */
+.compliance-summary__title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.compliance-summary__eyebrow {
+  margin: 0;
+  font-family: var(--saf-font-family-heading);
+  font-size: 14px; /* No Saffron token for 14px */
+  font-weight: var(--saf-font-weight-medium);
+  line-height: 1.2;
+  color: var(--saf-color-text-subtle);
+}
+
+.compliance-summary__title {
+  margin: 0;
+  font-family: var(--saf-font-family-heading);
+  font-size: var(--saf-font-size-xl);
+  font-weight: var(--saf-font-weight-medium);
+  line-height: 1.2;
+  color: var(--saf-color-text-heavy);
+}
+
+/* ── Year filter ───────────────────────────────────────────── */
+.compliance-summary__filter {
+  display: flex;
+  align-items: center;
+  gap: var(--saf-spacing-3);
+}
+
+.compliance-summary__filter-label {
+  font-family: var(--saf-font-family-body);
+  font-size: var(--saf-font-size-md);
+  font-weight: var(--saf-font-weight-semibold);
+  color: var(--saf-color-text-heavy);
+  white-space: nowrap;
+}
+
+/* ── Panels row ────────────────────────────────────────────── */
+.compliance-summary__panels {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--saf-spacing-6);
+  flex-wrap: wrap;
+}
+
+.compliance-summary__panels > saf-divider {
+  align-self: stretch;
+}
+
+/* ── Individual panel ──────────────────────────────────────── */
+.compliance-summary__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--saf-spacing-3);
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.compliance-summary__panel-title {
+  margin: 0;
+  font-family: var(--saf-font-family-heading);
+  font-size: var(--saf-font-size-md);
+  font-weight: var(--saf-font-weight-medium);
+  line-height: 1.2;
+  color: var(--saf-color-text-heavy);
+}
+
+/* ── Stats area (dl usage for semantic key/value) ──────────── */
+.compliance-summary__stats {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--saf-spacing-4);
+  padding-block: var(--saf-spacing-2);
+}
+
+.compliance-summary__stats > saf-divider {
+  align-self: stretch;
+}
+
+.compliance-summary__stat-group {
+  display: flex;
+  gap: var(--saf-spacing-3);
+  align-items: flex-start;
+  flex: 1 0 0;
+}
+
+.compliance-summary__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--saf-spacing-4);
+  flex: 1 0 0;
+  overflow: hidden;
+}
+
+.compliance-summary__stat-label {
+  margin: 0;
+  font-family: var(--saf-font-family-heading);
+  font-size: var(--saf-font-size-md);
+  font-weight: var(--saf-font-weight-medium);
+  line-height: 1.2;
+  color: var(--saf-color-text-subtle);
+}
+
+.compliance-summary__stat-value {
+  margin: 0;
+  font-family: var(--saf-font-family-heading);
+  font-size: var(--saf-font-size-xl);
+  font-weight: var(--saf-font-weight-medium);
+  line-height: 1.2;
+  color: var(--saf-color-text-heavy);
+}
+
+/* ── Status group ──────────────────────────────────────────── */
+.compliance-summary__status-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--saf-spacing-4);
+  flex: 1 0 0;
+}
+
+.compliance-summary__badges {
+  display: flex;
+  gap: var(--saf-spacing-6);
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+/* ── Responsive: stack panels on small screens ─────────────── */
+@media (max-width: 640px) {
+  .compliance-summary__panels {
+    flex-direction: column;
+  }
+
+  .compliance-summary__panels > saf-divider {
+    display: none;
+  }
+
+  .compliance-summary__stat-group {
+    flex-wrap: wrap;
+  }
+
+  .compliance-summary__badges {
+    gap: var(--saf-spacing-3);
+  }
+}
