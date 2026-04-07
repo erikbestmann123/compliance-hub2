@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/portfolios", "destination": "/portfolios.html" },
+    { "source": "/compliance-summary", "destination": "/compliance-summary.html" },
+    { "source": "/template-update", "destination": "/template-update.html" }
+  ]
+}
