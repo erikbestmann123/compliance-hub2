@@ -2,6 +2,9 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
+  "redirects": [
+    { "source": "/", "destination": "/portfolios.html", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/portfolios", "destination": "/portfolios.html" },
     { "source": "/compliance-summary", "destination": "/compliance-summary.html" },
