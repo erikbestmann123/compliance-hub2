@@ -1,0 +1,8 @@
+# Local secrets — never commit
+scripts/claude-litellm.env.local
+
+# Python virtualenv
+.venv/
+
+# macOS metadata
+.DS_Store
