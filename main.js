@@ -1,5 +1,5 @@
 // Import Saffron core styles (CSS-only package)
-import '@saffron/core-styles/index.css';
+import '@thomsonreuters/saffron-core-styles-prototyping-only/index.css';
 
 // Import Saffron component factory functions
 // Each must be called explicitly to register the custom element in customElements registry
@@ -44,7 +44,7 @@ import {
   SafText,
   SafTextField,
   SafTooltip,
-} from '@saffron/core-components';
+} from '@thomsonreuters/saffron-core-components-prototyping-only';
 
 // Call each factory to register web components
 SafAccordion();

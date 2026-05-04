@@ -1,8 +1,19 @@
 # Local secrets — never commit
 scripts/claude-litellm.env.local
 
+# Node
+node_modules/
+
 # Python virtualenv
 .venv/
 
 # macOS metadata
 .DS_Store
+
+# Vite / Vercel build output
+dist/
+.vercel/
+
+# Playwright artifacts
+playwright-report/
+test-results/

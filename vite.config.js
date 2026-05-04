@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  // Ensure web components from @saffron are not externalized
+  // Ensure web components from Saffron are not externalized
   optimizeDeps: {
-    include: ['@saffron/core-components'],
+    include: ['@thomsonreuters/saffron-core-components-prototyping-only'],
   },
   build: {
     rollupOptions: {
