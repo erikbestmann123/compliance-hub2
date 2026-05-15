@@ -94,8 +94,8 @@
             <saf-icon icon-name="objects-column" slot="start"></saf-icon>
             Compliance Hub dashboard
           </saf-menu-item>
-          <saf-menu-item has-link url="#" current>
-            <saf-icon icon-name="globe-stand" appearance="solid" slot="start"></saf-icon>
+          <saf-menu-item has-link url="#" aria-current="page">
+            <span class="fa-custom-icon fa-custom-icon--f5f6" slot="start" aria-hidden="true"></span>
             Portfolios
           </saf-menu-item>
           <saf-menu-item has-link url="#">
@@ -334,25 +334,8 @@
                         <saf-accordion>
                           <saf-accordion-item>
                             <span slot="heading">Obligations in effect</span>
-                            <div class="obligations-table-wrapper">
-                              <table class="obligations-table">
-                                <thead>
-                                  <tr>
-                                    <th class="col-jurisdiction">
-                                      <span class="th-content">Jurisdiction <button class="sort-btn" aria-label="Sort by jurisdiction"><saf-icon icon-name="arrows-up-down"></saf-icon></button></span>
-                                    </th>
-                                    <th>Digital control</th>
-                                    <th>Document type</th>
-                                    <th>Transaction type</th>
-                                    <th>CTC model</th>
-                                    <th>Frequency</th>
-                                    <th>Comments</th>
-                                  </tr>
-                                </thead>
-                                <tbody id="tbody-in-effect"></tbody>
-                              </table>
-                              <saf-pagination id="pag-in-effect"></saf-pagination>
-                            </div>
+                            <div id="grid-in-effect" class="wj-flexgrid"></div>
+                            <saf-pagination id="pag-in-effect"></saf-pagination>
                           </saf-accordion-item>
                         </saf-accordion>
 
@@ -360,25 +343,8 @@
                         <saf-accordion>
                           <saf-accordion-item>
                             <span slot="heading">Upcoming obligations</span>
-                            <div class="obligations-table-wrapper">
-                              <table class="obligations-table">
-                                <thead>
-                                  <tr>
-                                    <th class="col-jurisdiction">
-                                      <span class="th-content">Jurisdiction <button class="sort-btn" aria-label="Sort by jurisdiction"><saf-icon icon-name="arrows-up-down"></saf-icon></button></span>
-                                    </th>
-                                    <th>Digital control</th>
-                                    <th>Document type</th>
-                                    <th>Transaction type</th>
-                                    <th>CTC model</th>
-                                    <th>Frequency</th>
-                                    <th>Comments</th>
-                                  </tr>
-                                </thead>
-                                <tbody id="tbody-upcoming"></tbody>
-                              </table>
-                              <saf-pagination id="pag-upcoming"></saf-pagination>
-                            </div>
+                            <div id="grid-upcoming" class="wj-flexgrid"></div>
+                            <saf-pagination id="pag-upcoming"></saf-pagination>
                           </saf-accordion-item>
                         </saf-accordion>
                       </div>
@@ -617,179 +583,5 @@
         </main>
       </div>
     </div>
-  <script>
-  (function () {
-    // ── Data ────────────────────────────────────────────────────────────────
-    const DC = 'E-invoicing &amp; CTC';
-    const DT = 'Electronic invoice';
-    function r(j, href, isFirst, tx, ctc, freq, comments) {
-      return { jurisdiction: j, href, isFirst, digitalControl: DC, docType: DT, txType: tx, ctcModel: ctc, frequency: freq, hasComments: comments };
-    }
-    function e(tx, ctc, freq, comments) {
-      return r('', null, false, tx, ctc, freq, comments);
-    }
-
-    const obligationsInEffect = [
-      r('Belgium',       '#belgium',       true,  'B2B',           'Centralised / Peppol',    'Annual',       true),
-      e(                                          'B2G',           'Centralised / Peppol',    'Quarterly',    false),
-      e(                                          'B2G central',   'Post-Audit',               'Annual',       false),
-      r('Canada',        '#canada',        true,  'B2B',           'Post-Audit',               'Annual',       true),
-      e(                                          'B2G',           'Clearance / Centralized',  'Quarterly',    false),
-      r('Finland',       '#finland',       true,  'B2B',           'Post-Audit',               'Semi-annual',  false),
-      e(                                          'B2G',           'Interoperability / Peppol','Real-time',    false),
-      r('France',        '#france',        true,  'B2B',           'Clearance / Centralized',  'Monthly',      true),
-      e(                                          'B2G',           'Centralised / Peppol',     'Annual',       false),
-      e(                                          'B2G central',   'Clearance / Centralized',  'Quarterly',    false),
-      r('Germany',       '#germany',       true,  'B2B',           'Post-Audit',               'Annual',       false),
-      e(                                          'B2G central',   'Centralised / Peppol',     'Quarterly',    false),
-      e(                                          'B2G sub-central','Centralised / Peppol',    'Quarterly',    false),
-      r('Ireland',       '#ireland',       true,  'B2B',           'Post-Audit',               'Annual',       true),
-      e(                                          'B2G',           'Centralised / Peppol',     'Semi-annual',  false),
-      r('Italy',         '#italy',         true,  'B2B',           'Clearance / Centralized',  'Real-time',    true),
-      e(                                          'B2G',           'Clearance / Centralized',  'Monthly',      false),
-      e(                                          'B2G central',   'Post-Audit',               'Annual',       false),
-      r('Japan',         '#japan',         true,  'B2B',           'Post-Audit',               'Annual',       false),
-      e(                                          'B2B sub-sector','Centralised / Peppol',     'Quarterly',    true),
-      e(                                          'B2G',           'Interoperability / Peppol','Annual',       false),
-      r('Mexico',        '#mexico',        true,  'B2B',           'Clearance / Centralized',  'Monthly',      true),
-      e(                                          'B2G',           'Post-Audit',               'Quarterly',    false),
-      r('Netherlands',   '#netherlands',   true,  'B2B',           'Centralised / Peppol',     'Annual',       false),
-      e(                                          'B2G',           'Centralised / Peppol',     'Quarterly',    true),
-      e(                                          'B2G central',   'Interoperability / Peppol','Annual',       false),
-      r('Norway',        '#norway',        true,  'B2B',           'Post-Audit',               'Annual',       true),
-      e(                                          'B2G',           'Centralised / Peppol',     'Semi-annual',  false),
-      r('Portugal',      '#portugal',      true,  'B2B',           'Clearance / Centralized',  'Monthly',      false),
-      e(                                          'B2G',           'Post-Audit',               'Annual',       false),
-      e(                                          'B2G sub-central','Centralised / Peppol',    'Quarterly',    true),
-      r('South Korea',   '#south-korea',   true,  'B2B',           'Clearance / Centralized',  'Real-time',    true),
-      e(                                          'B2G',           'Clearance / Centralized',  'Monthly',      false),
-      e(                                          'B2G central',   'Centralised / Peppol',     'Annual',       false),
-      r('Spain',         '#spain',         true,  'B2B',           'Clearance / Centralized',  'Annual',       true),
-      e(                                          'B2G',           'Centralised / Peppol',     'Quarterly',    false),
-      e(                                          'B2G central',   'Post-Audit',               'Semi-annual',  false),
-      r('Sweden',        '#sweden',        true,  'B2B',           'Post-Audit',               'Annual',       false),
-      e(                                          'B2G',           'Centralised / Peppol',     'Quarterly',    true),
-      r('Switzerland',   '#switzerland',   true,  'B2B',           'Clearance / Centralized',  'Annual',       true),
-      e(                                          'B2G',           'Interoperability / Peppol','Semi-annual',  false),
-      r('Taiwan',        '#taiwan',        true,  'B2B',           'Post-Audit',               'Annual',       false),
-      e(                                          'B2G',           'Clearance / Centralized',  'Quarterly',    false),
-      r('United Kingdom','#uk',            true,  'B2B',           'Clearance / Centralized',  'Monthly',      true),
-      e(                                          'B2G',           'Centralised / Peppol',     'Annual',       false),
-      e(                                          'B2G central',   'Post-Audit',               'Quarterly',    false),
-      e(                                          'B2G sub-central','Centralised / Peppol',    'Annual',       false),
-      r('United States', '#us',            true,  'B2B',           'Post-Audit',               'Annual',       true),
-      e(                                          'B2G',           'Post-Audit',               'Quarterly',    false),
-      e(                                          'B2G central',   'Clearance / Centralized',  'Monthly',      false),
-    ];
-
-    const upcomingObligations = [
-      r('Belgium',       '#belgium',       true,  'B2B',  'Peppol',                    '2026 Q3',  true),
-      r('Canada',        '#canada',        true,  'B2B',  'Post-Audit',                '2026 Q4',  false),
-      r('Finland',       '#finland',       true,  'B2B',  'Centralised / Peppol',      '2027 Q1',  false),
-      r('France',        '#france',        true,  'B2B',  'Clearance / Centralized',   '2026 Q3',  true),
-      r('Germany',       '#germany',       true,  'B2G',  'Post-Audit',                '2027 Q2',  false),
-      r('Ireland',       '#ireland',       true,  'B2B',  'Centralised / Peppol',      '2027 Q1',  false),
-      r('Italy',         '#italy',         true,  'B2B',  'Clearance / Centralized',   '2026 Q4',  true),
-      r('Japan',         '#japan',         true,  'B2B',  'Post-Audit',                '2027 Q2',  false),
-      r('Mexico',        '#mexico',        true,  'B2B',  'Clearance / Centralized',   '2027 Q1',  false),
-      r('Netherlands',   '#netherlands',   true,  'B2B',  'Centralised / Peppol',      '2026 Q3',  false),
-      r('Norway',        '#norway',        true,  'B2G',  'Centralised / Peppol',      '2027 Q2',  false),
-      r('Portugal',      '#portugal',      true,  'B2B',  'Clearance / Centralized',   '2026 Q4',  false),
-      r('South Korea',   '#south-korea',   true,  'B2B',  'Clearance / Centralized',   '2027 Q1',  true),
-    ];
-
-    // ── Render ───────────────────────────────────────────────────────────────
-    function initTable(tbodyId, pagId, data) {
-      const tbody = document.getElementById(tbodyId);
-      const pagEl = document.getElementById(pagId);
-      if (!tbody || !pagEl) return;
-
-      const state = { data, currentPageIndex: 0, perPage: 10 };
-
-      // Configure saf-pagination properties (must be set via JS for arrays)
-      pagEl.totalItemCount = data.length;
-      pagEl.itemsPerPage = 10;
-      pagEl.currentPageIndex = 0;
-      pagEl.itemsArray = [10, 25, 50];
-
-      function renderPage() {
-        const start = state.currentPageIndex * state.perPage;
-        const rows = state.data.slice(start, start + state.perPage);
-        tbody.innerHTML = rows.map(row => `
-          <tr>
-            <td class="col-jurisdiction">
-              ${row.isFirst ? `<a href="${row.href}" class="jurisdiction-link">${row.jurisdiction}</a>` : ''}
-            </td>
-            <td>${row.digitalControl}</td>
-            <td>${row.docType}</td>
-            <td>${row.txType}</td>
-            <td>${row.ctcModel}</td>
-            <td>${row.frequency}</td>
-            <td>${row.hasComments ? `<button class="comments-btn">Comments <span aria-hidden="true">›</span></button>` : ''}</td>
-          </tr>
-        `).join('');
-      }
-
-      pagEl.addEventListener('change', (e) => {
-        state.currentPageIndex = e.detail ?? pagEl.currentPageIndex;
-        renderPage();
-      });
-
-      pagEl.addEventListener('items-per-page-change', (e) => {
-        state.perPage = e.detail ?? pagEl.itemsPerPage;
-        state.currentPageIndex = 0;
-        pagEl.currentPageIndex = 0;
-        renderPage();
-      });
-
-      renderPage();
-    }
-
-    function init() {
-      initTable('tbody-in-effect', 'pag-in-effect', obligationsInEffect);
-      initTable('tbody-upcoming', 'pag-upcoming', upcomingObligations);
-
-      // ── Portfolio actions dropdown ──────────────────────────
-      const actionsBtn = document.getElementById('btn-portfolio-actions');
-      const actionsMenu = document.getElementById('portfolio-actions-menu');
-
-      if (actionsBtn && actionsMenu) {
-        actionsBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const isOpen = !actionsMenu.hidden;
-          actionsMenu.hidden = isOpen;
-          actionsBtn.setAttribute('aria-expanded', String(!isOpen));
-        });
-
-        // Close on outside click
-        document.addEventListener('click', () => {
-          actionsMenu.hidden = true;
-          actionsBtn.setAttribute('aria-expanded', 'false');
-        });
-
-        // Close when a menu item is selected
-        actionsMenu.addEventListener('click', () => {
-          actionsMenu.hidden = true;
-          actionsBtn.setAttribute('aria-expanded', 'false');
-        });
-
-        // Close on Escape
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && !actionsMenu.hidden) {
-            actionsMenu.hidden = true;
-            actionsBtn.setAttribute('aria-expanded', 'false');
-            actionsBtn.focus();
-          }
-        });
-      }
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
-      init();
-    }
-  })();
-  </script>
   </body>
 </html>

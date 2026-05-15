@@ -257,6 +257,23 @@ test.describe('Portfolios – Obligations', () => {
     await expect(items.nth(0)).toContainText('Obligations in effect');
     await expect(items.nth(1)).toContainText('Upcoming obligations');
   });
+
+  test('both FlexGrid hosts render with the seven obligation column headers', async ({ page }) => {
+    const expectedHeaders = ['Jurisdiction', 'Digital control', 'Document type', 'Transaction type', 'CTC model', 'Frequency', 'Comments'];
+    // Expand both accordions so the FlexGrid hosts are visible.
+    await page.evaluate(() => {
+      document.querySelectorAll('.obligations-accordions saf-accordion-item').forEach(el => el.setAttribute('expanded', ''));
+    });
+    for (const hostId of ['grid-in-effect', 'grid-upcoming']) {
+      const host = page.locator(`#${hostId}.wj-flexgrid`);
+      await expect(host).toBeVisible();
+      const headers = host.locator('[role="columnheader"]');
+      await expect(headers).toHaveCount(expectedHeaders.length);
+      for (let i = 0; i < expectedHeaders.length; i++) {
+        await expect(headers.nth(i)).toContainText(expectedHeaders[i]);
+      }
+    }
+  });
 });
 
 // ── Latest Regulatory Updates ────────────────────────────────────────────────
@@ -378,7 +395,7 @@ test.describe('Portfolios – Left Navigation', () => {
   });
 
   test('Portfolios nav item is marked as current', async ({ page }) => {
-    const portfoliosItem = page.locator(`${ROOT} saf-side-nav saf-menu-item[current]`);
+    const portfoliosItem = page.locator(`${ROOT} saf-side-nav saf-menu-item[aria-current="page"]`);
     await expect(portfoliosItem).toContainText('Portfolios');
   });
 });
