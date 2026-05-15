@@ -12,6 +12,8 @@
     "test:coverage": "playwright test --reporter=html"
   },
   "dependencies": {
+    "@grapecity/wijmo": "^5.20261.50",
+    "@grapecity/wijmo.grid": "^5.20261.50",
     "@thomsonreuters/saffron-core-components-prototyping-only": "^3.21.3",
     "@thomsonreuters/saffron-core-styles-prototyping-only": "^3.11.0"
   },

@@ -35,9 +35,29 @@
   text-align: center;
 }
 
-saf-menu-item[current] .fa-custom-icon {
+saf-menu-item[aria-current] .fa-custom-icon {
   font-weight: 900;
-  color: #D64000;
+  color: var(--saf-color-interactive-states-item-current);
+}
+
+/* In the collapsed/icon-only side-nav state Saffron keeps the invisible   */
+/* label container in the flex row at flex:1 1 auto, ~80px wide — pushing  */
+/* the icon to the left edge inside the hover/current outline (so it       */
+/* doesn't align with the rail's toggle button above it). Collapse the     */
+/* content part to zero width and center the row so the icon sits in the   */
+/* horizontal center of the rail, matching the toggle button.              */
+saf-menu-item[side-nav-item].text-hidden::part(root) {
+  justify-content: center;
+}
+
+saf-menu-item[side-nav-item].text-hidden::part(content) {
+  flex: 0 0 0;
+  width: 0;
+  padding: 0;
+}
+
+.fa-custom-icon--f5f6::before {
+  content: "\f5f6";
 }
 
 .fa-custom-icon--f274::before {
@@ -410,85 +430,58 @@ saf-menu-item[current] .fa-custom-icon {
   gap: var(--saf-spacing-4);
 }
 
-/* ── Obligations Table ───────────────────────────────────── */
-.obligations-table-wrapper {
-  overflow-x: auto;
+/* ── Obligations Grid (Wijmo FlexGrid + Saffron) ────────── */
+/* The grid base styling comes from `wj-flexgrid` (Saffron's Wijmo CSS).   */
+/* Cell-level link/button styles below apply via formatItem cellTemplates. */
+
+/* Header band (#edf2f0) and alt-row stripe (#f5f7f6) per Figma tokens.    */
+.obligations-accordions .wj-flexgrid .wj-header,
+.obligations-accordions .wj-flexgrid .wj-cell.wj-header {
+  background-color: #edf2f0;
+  color: var(--saf-color-text-heavy);
+  font-weight: 600;
 }
 
-.obligations-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: var(--saf-font-size-body-md);
-}
-
-.obligations-table thead tr {
-  border-bottom: 2px solid var(--saf-color-border-strong);
-}
-
-.obligations-table th {
-  text-align: left;
-  padding: var(--saf-spacing-2) var(--saf-spacing-4);
-  font-weight: var(--saf-font-weight-semibold);
-  white-space: nowrap;
-  color: var(--saf-color-text-default);
-}
-
-.obligations-table td {
-  padding: var(--saf-spacing-2) var(--saf-spacing-4);
-  border-bottom: 1px solid var(--saf-color-border-subtle);
-  vertical-align: middle;
-  font-size: var(--saf-font-size-body-md);
-  color: var(--saf-color-text-default);
-}
-
-.obligations-table .col-jurisdiction {
-  width: 200px;
-  min-width: 150px;
-}
-
-.th-content {
-  display: flex;
-  align-items: center;
-  gap: var(--saf-spacing-1);
-}
-
-.sort-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  color: var(--saf-color-text-secondary);
-  line-height: 1;
-}
-
-.sort-btn:hover {
-  color: var(--saf-color-text-default);
+.obligations-accordions .wj-flexgrid .wj-cell.wj-alt {
+  background-color: #f5f7f6;
 }
 
 .jurisdiction-link {
-  color: var(--saf-color-text-link);
-  text-decoration: none;
+  color: #0062c4;
+  text-decoration: underline;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 .jurisdiction-link:hover {
   text-decoration: underline;
+  color: #004a96;
 }
 
+/* Saffron secondary button look for in-cell Comments action. */
 .comments-btn {
-  background: none;
-  border: 1px solid var(--saf-color-border-default);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--saf-spacing-1);
+  background-color: #ffffff;
+  border: 1px solid #6e8178;
   border-radius: 4px;
-  padding: var(--saf-spacing-1) var(--saf-spacing-3);
+  padding: 2px var(--saf-spacing-3);
   cursor: pointer;
-  font-size: var(--saf-font-size-body-sm);
-  color: var(--saf-color-text-default);
+  font-family: "Clario", sans-serif;
+  font-weight: 500;
+  font-size: var(--saf-font-size-sm);
+  line-height: 1.2;
+  color: #1d4b34;
   white-space: nowrap;
 }
 
 .comments-btn:hover {
-  background-color: var(--saf-color-background-subtle);
+  background-color: #f5f7f6;
+}
+
+.comments-btn:focus-visible {
+  outline: 2px solid #0062c4;
+  outline-offset: 1px;
 }
 
 /* ─── Latest Regulatory Updates Section ───────────────────── */
